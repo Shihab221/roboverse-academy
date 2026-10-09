@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${hindSiliguri.variable} font-sans antialiased bg-gray-900 text-gray-100`}
+        className={`${inter.variable} ${hindSiliguri.variable} font-sans antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"

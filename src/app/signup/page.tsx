@@ -40,7 +40,7 @@ export default function SignupPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-20">
       {/* Background effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px]" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px]" />
       <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-500/20 rounded-full blur-[80px]" />
 
       <div className="w-full max-w-5xl relative z-10 grid lg:grid-cols-2 gap-8 items-center">
@@ -50,10 +50,10 @@ export default function SignupPage() {
           animate={{ opacity: 1, x: 0 }}
           className="hidden lg:block"
         >
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Start Your <span className="text-cyan-400">Robotics Journey</span> Today
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+            Start Your <span className="text-green-700 dark:text-cyan-400">Robotics Journey</span> Today
           </h2>
-          <p className="text-slate-400 text-lg mb-8">
+          <p className="text-slate-600 dark:text-slate-400 text-lg mb-8">
             Join thousands of students learning Arduino, Raspberry Pi, and Robotics with simple, step-by-step lessons.
           </p>
           
@@ -67,19 +67,19 @@ export default function SignupPage() {
                 className="flex items-center gap-3"
               >
                 <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400" />
+                  <CheckCircle2 className="w-5 h-5 text-green-700 dark:text-cyan-400" />
                 </div>
                 <span className="text-slate-300">{feature}</span>
               </motion.li>
             ))}
           </ul>
 
-          <div className="mt-10 p-6 rounded-2xl bg-slate-800/30 border border-slate-700/50">
+          <div className="mt-10 p-6 rounded-2xl bg-slate-900 dark:bg-slate-800/30 border border-slate-800 dark:border-slate-700/50">
             <p className="text-slate-400 italic">
               "I had no idea about electronics. Now I build my own robots! The simple explanations made everything easy."
             </p>
             <div className="flex items-center gap-3 mt-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-white font-semibold">
+              <div className="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center text-white font-semibold">
                 R
               </div>
               <div>
@@ -99,10 +99,10 @@ export default function SignupPage() {
             {/* Logo */}
             <div className="text-center mb-8">
               <Link href="/" className="inline-flex items-center gap-2 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
+                <div className="w-12 h-12 rounded-xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                   <Bot className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                <span className="text-2xl font-bold text-green-700 dark:text-cyan-400">
                   Robotics Academy
                 </span>
               </Link>
@@ -180,11 +180,11 @@ export default function SignupPage() {
                 />
                 <label htmlFor="terms" className="text-sm text-slate-400">
                   I agree to the{' '}
-                  <Link href="/terms" className="text-cyan-400 hover:text-cyan-300">
+                  <Link href="/terms" className="text-green-700 dark:text-cyan-400 hover:text-green-600 dark:hover:text-cyan-300">
                     Terms of Service
                   </Link>{' '}
                   and{' '}
-                  <Link href="/privacy" className="text-cyan-400 hover:text-cyan-300">
+                  <Link href="/privacy" className="text-green-700 dark:text-cyan-400 hover:text-green-600 dark:hover:text-cyan-300">
                     Privacy Policy
                   </Link>
                 </label>
@@ -229,7 +229,7 @@ export default function SignupPage() {
             {/* Login link */}
             <p className="text-center text-slate-400 mt-6">
               Already have an account?{' '}
-              <Link href="/login" className="text-cyan-400 hover:text-cyan-300 font-medium">
+              <Link href="/login" className="text-green-700 dark:text-cyan-400 hover:text-green-600 dark:hover:text-cyan-300 font-medium">
                 Sign in
               </Link>
             </p>

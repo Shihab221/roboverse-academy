@@ -87,7 +87,7 @@ export default function DashboardPage() {
       {/* Header */}
       <section className="relative py-12 px-4 overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px]" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px]" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
@@ -96,11 +96,11 @@ export default function DashboardPage() {
             className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
           >
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25 text-2xl font-bold text-white">
+              <div className="w-16 h-16 rounded-2xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/25 text-2xl font-bold text-white">
                 {userData.name[0]}
               </div>
               <div>
-                <h1 className="text-2xl md:text-3xl font-bold text-white">
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
                   {t('dashboard.welcome')}, {userData.name}!
                 </h1>
                 <p className="text-slate-400">Keep up the great work! 🎉</p>
@@ -153,7 +153,7 @@ export default function DashboardPage() {
           
           <GlassCard className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <Award className="w-8 h-8 text-purple-400" />
+              <Award className="w-8 h-8 text-cyan-400" />
             </div>
             <h3 className="text-2xl font-bold text-white">{userData.certificates}</h3>
             <p className="text-slate-400">Certificates</p>
@@ -169,11 +169,11 @@ export default function DashboardPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-xl font-semibold text-white mb-4">{t('dashboard.progress')}</h2>
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">{t('dashboard.progress')}</h2>
               <div className="space-y-4">
                 <Card className="p-6">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
+                    <div className="w-12 h-12 rounded-xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                       <Cpu className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
@@ -197,13 +197,13 @@ export default function DashboardPage() {
 
                 <Card className="p-6">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center shadow-lg shadow-yellow-500/25">
+                    <div className="w-12 h-12 rounded-xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                       <Zap className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="font-semibold text-white">ESP32 Track</h3>
-                        <span className="text-yellow-400 font-medium">{userData.progress.esp32.percent}%</span>
+                        <span className="text-cyan-400 font-medium">{userData.progress.esp32.percent}%</span>
                       </div>
                       <Progress value={userData.progress.esp32.percent} />
                     </div>
@@ -221,13 +221,13 @@ export default function DashboardPage() {
 
                 <Card className="p-6">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg shadow-purple-500/25">
+                    <div className="w-12 h-12 rounded-xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                       <Bot className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="font-semibold text-white">Raspberry Pi Track</h3>
-                        <span className="text-purple-400 font-medium">{userData.progress.raspberrypi.percent}%</span>
+                        <span className="text-cyan-400 font-medium">{userData.progress.raspberrypi.percent}%</span>
                       </div>
                       <Progress value={userData.progress.raspberrypi.percent} />
                     </div>
@@ -251,7 +251,7 @@ export default function DashboardPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-xl font-semibold text-white mb-4">{t('dashboard.recommended')}</h2>
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">{t('dashboard.recommended')}</h2>
               <div className="space-y-3">
                 {recommendedLessons.map((lesson) => (
                   <Link
@@ -293,7 +293,7 @@ export default function DashboardPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-xl font-semibold text-white mb-4">{t('dashboard.badges')}</h2>
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">{t('dashboard.badges')}</h2>
               <Card className="p-6">
                 <div className="space-y-4">
                   {userData.badges.map((badge, i) => (
@@ -320,7 +320,7 @@ export default function DashboardPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-xl font-semibold text-white mb-4">Recent Activity</h2>
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">Recent Activity</h2>
               <Card className="p-6">
                 <div className="space-y-4">
                   {userData.recentActivity.map((activity, i) => (
@@ -328,7 +328,7 @@ export default function DashboardPage() {
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                         activity.type === 'lesson' 
                           ? 'bg-cyan-500/20 text-cyan-400'
-                          : 'bg-purple-500/20 text-purple-400'
+                          : 'bg-cyan-500/20 text-cyan-400'
                       }`}>
                         {activity.type === 'lesson' ? (
                           <BookOpen className="w-4 h-4" />
@@ -352,7 +352,7 @@ export default function DashboardPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-xl font-semibold text-white mb-4">{t('dashboard.certificates')}</h2>
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">{t('dashboard.certificates')}</h2>
               <Card className="p-6 text-center">
                 <Medal className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
                 <h4 className="font-semibold text-white mb-2">Arduino Basics</h4>

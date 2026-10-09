@@ -24,7 +24,7 @@ export default function LessonsHomePage() {
           <BookOpen className="w-6 h-6 text-cyan-400" />
         </div>
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-white">
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
             {t('lessons.homeTitle')}
           </h1>
           <p className="text-sm text-gray-500">{t('lessons.homeSubtitle')}</p>
@@ -39,7 +39,7 @@ export default function LessonsHomePage() {
       </RoboButton>
 
       <div className="mt-12 space-y-4">
-        <h2 className="text-lg font-semibold text-white">{t('lessons.tracksHeading')}</h2>
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">{t('lessons.tracksHeading')}</h2>
         {LESSON_TRACKS.map((track) => {
           const Icon = trackIcons[track.id]
           const first = track.modules[0]?.lessons[0]
@@ -49,7 +49,7 @@ export default function LessonsHomePage() {
             <Link
               key={track.id}
               href={href}
-              className="flex items-center gap-4 p-4 rounded-lg border border-gray-800 bg-gray-800/40 hover:border-cyan-500/40 hover:bg-gray-800/70 transition-colors group"
+              className="flex items-center gap-4 p-4 rounded-lg border border-slate-300 dark:border-gray-800 bg-slate-900 dark:bg-gray-800/40 hover:border-cyan-500/40 hover:bg-slate-800 dark:hover:bg-gray-800/70 transition-colors group"
             >
               <div className="w-11 h-11 rounded-lg bg-gray-900 border border-cyan-900/40 flex items-center justify-center text-cyan-400 group-hover:border-cyan-500/50">
                 <Icon className="w-6 h-6" />

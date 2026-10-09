@@ -81,8 +81,8 @@ const GlassCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl",
-      "before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-white/10 before:to-transparent before:pointer-events-none",
+      "relative rounded-2xl border border-slate-800 bg-slate-900 dark:border-white/10 dark:bg-white/5 backdrop-blur-xl",
+      "before:absolute before:inset-0 before:rounded-2xl before:bg-white/5 before:pointer-events-none",
       "shadow-xl shadow-cyan-500/5 hover:shadow-cyan-500/10 transition-all duration-500",
       "hover:border-cyan-400/30",
       className

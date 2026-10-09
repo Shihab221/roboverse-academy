@@ -87,10 +87,10 @@ export default function LessonPage() {
               </div>
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
               {isEn ? lesson.title : lesson.titleBn}
             </h1>
-            <p className="text-lg text-slate-400 max-w-3xl">
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
               {isEn ? lesson.description : lesson.descriptionBn}
             </p>
           </motion.div>
@@ -105,8 +105,8 @@ export default function LessonPage() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="flex items-center gap-3 text-xl font-semibold text-white mb-4">
-            <BookOpen className="w-5 h-5 text-cyan-400" />
+          <h2 className="flex items-center gap-3 text-xl font-semibold text-slate-900 dark:text-white mb-4">
+            <BookOpen className="w-5 h-5 text-green-700 dark:text-cyan-400" />
             {t('lesson.whatlearn')}
           </h2>
           <Card className="p-6">
@@ -128,8 +128,8 @@ export default function LessonPage() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="flex items-center gap-3 text-xl font-semibold text-white mb-4">
-            <Package className="w-5 h-5 text-cyan-400" />
+          <h2 className="flex items-center gap-3 text-xl font-semibold text-slate-900 dark:text-white mb-4">
+            <Package className="w-5 h-5 text-green-700 dark:text-cyan-400" />
             {t('lesson.components')}
           </h2>
           <Card className="p-6">
@@ -153,8 +153,8 @@ export default function LessonPage() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="flex items-center gap-3 text-xl font-semibold text-white mb-4">
-            <CircuitBoard className="w-5 h-5 text-cyan-400" />
+          <h2 className="flex items-center gap-3 text-xl font-semibold text-slate-900 dark:text-white mb-4">
+            <CircuitBoard className="w-5 h-5 text-green-700 dark:text-cyan-400" />
             {t('lesson.circuit')}
           </h2>
           <Card className="p-6">
@@ -179,8 +179,8 @@ export default function LessonPage() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="flex items-center gap-3 text-xl font-semibold text-white mb-4">
-            <Play className="w-5 h-5 text-cyan-400" />
+          <h2 className="flex items-center gap-3 text-xl font-semibold text-slate-900 dark:text-white mb-4">
+            <Play className="w-5 h-5 text-green-700 dark:text-cyan-400" />
             {t('lesson.code')}
           </h2>
           <CodeEditor
@@ -202,7 +202,7 @@ export default function LessonPage() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="flex items-center gap-3 text-xl font-semibold text-white mb-4">
+          <h2 className="flex items-center gap-3 text-xl font-semibold text-slate-900 dark:text-white mb-4">
             <Lightbulb className="w-5 h-5 text-yellow-400" />
             {t('lesson.tryit')}
           </h2>
@@ -228,7 +228,7 @@ export default function LessonPage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="flex items-center gap-3 text-xl font-semibold text-white mb-4">
+            <h2 className="flex items-center gap-3 text-xl font-semibold text-slate-900 dark:text-white mb-4">
               <AlertTriangle className="w-5 h-5 text-orange-400" />
               {t('lesson.mistakes')}
             </h2>

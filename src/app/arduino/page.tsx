@@ -132,13 +132,13 @@ const modules = [
 ]
 
 const colorMap: Record<string, string> = {
-  cyan: 'from-cyan-500 to-cyan-600 shadow-cyan-500/25',
-  yellow: 'from-yellow-500 to-yellow-600 shadow-yellow-500/25',
-  green: 'from-green-500 to-green-600 shadow-green-500/25',
-  orange: 'from-orange-500 to-orange-600 shadow-orange-500/25',
-  purple: 'from-purple-500 to-purple-600 shadow-purple-500/25',
-  blue: 'from-blue-500 to-blue-600 shadow-blue-500/25',
-  pink: 'from-pink-500 to-pink-600 shadow-pink-500/25',
+  cyan: 'bg-cyan-500 shadow-cyan-500/25',
+  yellow: 'bg-cyan-400 shadow-cyan-500/25',
+  green: 'bg-green-500 shadow-green-500/25',
+  orange: 'bg-cyan-500 shadow-cyan-500/25',
+  purple: 'bg-blue-500 shadow-blue-500/25',
+  blue: 'bg-blue-500 shadow-blue-500/25',
+  pink: 'bg-cyan-500 shadow-cyan-500/25',
 }
 
 export default function ArduinoTrackPage() {
@@ -166,17 +166,17 @@ export default function ArduinoTrackPage() {
           >
             <div>
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
+                <div className="w-16 h-16 rounded-2xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                   <Cpu className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <Badge>Learning Path</Badge>
-                  <h1 className="text-3xl md:text-4xl font-bold text-white mt-1">
+                  <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-1">
                     Arduino Track
                   </h1>
                 </div>
               </div>
-              <p className="text-slate-400 text-lg max-w-2xl">
+              <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl">
                 Master Arduino programming from the very basics to advanced projects. 
                 Learn sensors, motors, displays, and build real robots!
               </p>
@@ -222,7 +222,7 @@ export default function ArduinoTrackPage() {
                   <Card className="overflow-hidden">
                     <div className="p-6 border-b border-slate-700/50">
                       <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colorMap[module.color]} flex items-center justify-center shadow-lg`}>
+                        <div className={`w-12 h-12 rounded-xl ${colorMap[module.color]} flex items-center justify-center shadow-lg`}>
                           {module.icon}
                         </div>
                         <div className="flex-1">

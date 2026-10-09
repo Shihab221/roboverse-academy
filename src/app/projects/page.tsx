@@ -161,9 +161,9 @@ const trackIcons: Record<string, React.ReactNode> = {
 }
 
 const trackColors: Record<string, string> = {
-  'Arduino': 'from-cyan-500 to-blue-600',
-  'ESP32': 'from-yellow-500 to-orange-600',
-  'Raspberry Pi': 'from-purple-500 to-pink-600',
+  'Arduino': 'bg-cyan-500',
+  'ESP32': 'bg-cyan-500',
+  'Raspberry Pi': 'bg-cyan-500',
 }
 
 export default function ProjectsPage() {
@@ -185,7 +185,7 @@ export default function ProjectsPage() {
       {/* Hero Section */}
       <section className="relative py-16 px-4 overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px]" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px]" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
@@ -193,10 +193,10 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Project <span className="text-cyan-400">Gallery</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              Project <span className="text-green-700 dark:text-cyan-400">Gallery</span>
             </h1>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
               Build real-world projects step by step. From simple LED circuits to smart robots.
             </p>
           </motion.div>
@@ -279,10 +279,10 @@ export default function ProjectsPage() {
               >
                 <Link href={`/projects/${project.id}`}>
                   <Card glow className="h-full overflow-hidden group cursor-pointer">
-                    <div className="h-40 bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${trackColors[project.track]} opacity-10`} />
+                    <div className="h-40 bg-slate-800 relative overflow-hidden">
+                      <div className={`absolute inset-0 ${trackColors[project.track]} opacity-10`} />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${trackColors[project.track]} flex items-center justify-center shadow-lg opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all`}>
+                        <div className={`w-20 h-20 rounded-2xl ${trackColors[project.track]} flex items-center justify-center shadow-lg opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all`}>
                           {trackIcons[project.track]}
                         </div>
                       </div>
@@ -350,7 +350,7 @@ export default function ProjectsPage() {
 
           {filteredProjects.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-slate-400 text-lg">No projects found matching your criteria.</p>
+              <p className="text-slate-600 dark:text-slate-400 text-lg">No projects found matching your criteria.</p>
               <Button
                 variant="outline"
                 className="mt-4"

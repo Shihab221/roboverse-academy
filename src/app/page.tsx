@@ -145,16 +145,16 @@ export default function Home() {
           aria-hidden
         >
           <div className="absolute top-[22%] left-[clamp(1rem,5vw,4rem)] animate-float">
-            <div className="w-16 h-16 bg-gray-800/80 backdrop-blur-xl border border-cyan-500/30 flex items-center justify-center clip-corner-tl">
-              <Cpu className="w-8 h-8 text-cyan-400" />
+            <div className="w-16 h-16 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-cyan-500/30 flex items-center justify-center clip-corner-tl">
+              <Cpu className="w-8 h-8 text-green-700 dark:text-cyan-400" />
             </div>
           </div>
           <div
             className="absolute bottom-[28%] right-[clamp(1rem,5vw,4rem)] animate-float"
             style={{ animationDelay: '1s' }}
           >
-            <div className="w-16 h-16 bg-gray-800/80 backdrop-blur-xl border border-purple-500/30 flex items-center justify-center clip-corner-br">
-              <Bot className="w-8 h-8 text-purple-400" />
+            <div className="w-16 h-16 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-cyan-500/30 flex items-center justify-center clip-corner-br">
+              <Bot className="w-8 h-8 text-green-700 dark:text-cyan-400" />
             </div>
           </div>
         </div>
@@ -173,20 +173,20 @@ export default function Home() {
             </HexBadge>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-white via-cyan-100 to-cyan-400 bg-clip-text text-transparent">
+              <span className="text-slate-900 dark:text-white">
                 {t('hero.title')}
               </span>
               <br />
-              <span className="text-gray-300 text-3xl md:text-5xl lg:text-6xl">
+              <span className="text-slate-600 dark:text-gray-300 text-3xl md:text-5xl lg:text-6xl">
                 {t('hero.subtitle')}
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-4">
+            <p className="text-lg md:text-xl text-slate-600 dark:text-gray-400 max-w-2xl mx-auto mb-4">
               {t('hero.description')}
             </p>
-            <p className="text-sm text-cyan-500/70 mb-10">
-              A <span className="text-cyan-400 font-semibold">RoboverseBD</span> Initiative
+            <p className="text-sm text-green-700/70 dark:text-cyan-500/70 mb-10">
+              A <span className="text-green-700 dark:text-cyan-400 font-semibold">RoboverseBD</span> Initiative
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -204,13 +204,13 @@ export default function Home() {
       </section>
 
       {/* Trust Bar */}
-      <section className="bg-gray-800/50 border-y border-gray-700/50">
+      <section className="bg-slate-100/80 dark:bg-gray-800/50 border-y border-slate-200 dark:border-gray-700/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-0 sm:divide-x sm:divide-gray-700 py-3 sm:py-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-0 sm:divide-x sm:divide-slate-200 dark:sm:divide-gray-700 py-3 sm:py-0">
             {trustBadges.map((badge, index) => (
               <div key={index} className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 py-2 sm:py-4 px-2 text-center">
-                <badge.icon className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 flex-shrink-0" />
-                <span className="text-[11px] sm:text-sm text-gray-300 leading-snug">{badge.text}</span>
+                <badge.icon className="w-4 h-4 sm:w-5 sm:h-5 text-green-700 dark:text-cyan-400 flex-shrink-0" />
+                <span className="text-[11px] sm:text-sm text-slate-700 dark:text-gray-300 leading-snug">{badge.text}</span>
               </div>
             ))}
           </div>
@@ -227,9 +227,9 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Choose Your <span className="text-cyan-400">Learning Path</span>
+              Choose Your <span className="text-green-700 dark:text-cyan-400">Learning Path</span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               Start from zero and become a pro. Each path is designed with simple, step-by-step lessons.
             </p>
           </motion.div>
@@ -247,17 +247,17 @@ export default function Home() {
                 <Link href={path.href}>
                   <RoboCard className="h-full cursor-pointer" variant="circuit" cornerCut="both">
                     <div className="p-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center mb-6 text-cyan-400 clip-corner-br">
+                      <div className="w-16 h-16 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-6 text-green-700 dark:text-cyan-400 clip-corner-br">
                         {path.icon}
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-3">{path.title}</h3>
-                      <p className="text-gray-400 mb-6">{path.description}</p>
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{path.title}</h3>
+                      <p className="text-slate-600 dark:text-gray-400 mb-6">{path.description}</p>
+                      <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-gray-500">
                         <span>{path.lessons} {t('path.arduino.lessons')}</span>
                         <span>•</span>
                         <span>{path.projects} {t('path.arduino.projects')}</span>
                       </div>
-                      <div className="mt-6 flex items-center text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                      <div className="mt-6 flex items-center text-green-700 dark:text-cyan-400 group-hover:text-green-600 dark:group-hover:text-cyan-300 transition-colors">
                         <span className="text-sm font-medium">{t('path.start')}</span>
                         <ChevronRight className="w-4 h-4 ml-1" />
                       </div>
@@ -271,7 +271,7 @@ export default function Home() {
       </section>
 
       {/* Features — horizontal timeline */}
-      <section className="py-20 px-4 bg-gray-800/30 relative isolate overflow-hidden">
+      <section className="py-20 px-4 bg-slate-100/60 dark:bg-gray-800/30 relative isolate overflow-hidden">
         <div className="max-w-6xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -290,7 +290,7 @@ export default function Home() {
               className="absolute left-[6%] right-[6%] top-1/2 h-[2px] -translate-y-1/2 pointer-events-none"
               aria-hidden
             >
-              <div className="h-full w-full bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent" />
+              <div className="h-full w-full bg-cyan-500/40" />
               <CircuitLine variant="default" className="absolute inset-0 opacity-40" />
             </div>
 
@@ -308,13 +308,13 @@ export default function Home() {
                   >
                     {contentAbove ? (
                       <div className="flex-1 flex flex-col items-center justify-end pb-10 px-1 text-center">
-                        <div className="w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-cyan-400 clip-corner-br">
+                        <div className="w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-green-700 dark:text-cyan-400 clip-corner-br">
                           {feature.icon}
                         </div>
-                        <h3 className="text-base lg:text-lg font-semibold text-white mb-2 leading-snug">
+                        <h3 className="text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-2 leading-snug">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-400 text-xs lg:text-sm leading-relaxed max-w-[14rem]">
+                        <p className="text-slate-600 dark:text-gray-400 text-xs lg:text-sm leading-relaxed max-w-[14rem]">
                           {feature.description}
                         </p>
                       </div>
@@ -327,18 +327,18 @@ export default function Home() {
                       aria-hidden
                     >
                       <span className="absolute w-8 h-8 rounded-full bg-cyan-400/20 animate-pulse" />
-                      <span className="relative w-4 h-4 rounded-full border-2 border-cyan-300 bg-gray-900 shadow-[0_0_14px_rgba(34,211,238,0.75)]" />
+                      <span className="relative w-4 h-4 rounded-full border-2 border-cyan-300 bg-white dark:bg-gray-900 shadow-[0_0_14px_rgba(0,255,0,0.75)]" />
                     </div>
 
                     {!contentAbove ? (
                       <div className="flex-1 flex flex-col items-center justify-start pt-10 px-1 text-center">
-                        <div className="w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-cyan-400 clip-corner-br">
+                        <div className="w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-green-700 dark:text-cyan-400 clip-corner-br">
                           {feature.icon}
                         </div>
-                        <h3 className="text-base lg:text-lg font-semibold text-white mb-2 leading-snug">
+                        <h3 className="text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-2 leading-snug">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-400 text-xs lg:text-sm leading-relaxed max-w-[14rem]">
+                        <p className="text-slate-600 dark:text-gray-400 text-xs lg:text-sm leading-relaxed max-w-[14rem]">
                           {feature.description}
                         </p>
                       </div>
@@ -363,14 +363,14 @@ export default function Home() {
                 className="relative"
               >
                 <span
-                  className="absolute -left-[calc(2rem+5px)] top-1 w-3.5 h-3.5 rounded-full border-2 border-cyan-300 bg-gray-900 shadow-[0_0_10px_rgba(34,211,238,0.6)]"
+                  className="absolute -left-[calc(2rem+5px)] top-1 w-3.5 h-3.5 rounded-full border-2 border-cyan-300 bg-white dark:bg-gray-900 shadow-[0_0_10px_rgba(0,255,0,0.6)]"
                   aria-hidden
                 />
-                <div className="w-11 h-11 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-cyan-400 clip-corner-br">
+                <div className="w-11 h-11 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-green-700 dark:text-cyan-400 clip-corner-br">
                   {feature.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{feature.title}</h3>
+                <p className="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -378,7 +378,7 @@ export default function Home() {
       </section>
 
       {/* Stats — 2×2 squares + description */}
-      <section className="py-16 md:py-20 px-4 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-cyan-500/10 relative isolate">
+      <section className="py-16 md:py-20 px-4 bg-cyan-500/10 relative isolate">
         <div className="max-w-6xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 w-full">
@@ -389,15 +389,15 @@ export default function Home() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08 }}
-                  className="aspect-square flex flex-col items-center justify-center text-center p-4 bg-gray-900/70 border border-cyan-500/25 hover:border-cyan-500/45 transition-colors clip-corner-tl shadow-lg shadow-black/20"
+                  className="aspect-square flex flex-col items-center justify-center text-center p-4 bg-white dark:bg-gray-900/70 border border-cyan-200 dark:border-cyan-500/25 hover:border-cyan-500/45 transition-colors clip-corner-tl shadow-lg shadow-slate-200 dark:shadow-black/20"
                 >
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-cyan-400 clip-corner-tl">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-green-700 dark:text-cyan-400 clip-corner-tl">
                     {stat.icon}
                   </div>
-                  <div className="text-2xl sm:text-3xl font-bold text-cyan-400 mb-1 leading-none">
+                  <div className="text-2xl sm:text-3xl font-bold text-green-700 dark:text-cyan-400 mb-1 leading-none">
                     {stat.value}
                   </div>
-                  <div className="text-gray-400 text-xs sm:text-sm leading-snug px-1">
+                  <div className="text-slate-600 dark:text-gray-400 text-xs sm:text-sm leading-snug px-1">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -411,16 +411,16 @@ export default function Home() {
               transition={{ duration: 0.45 }}
               className="text-center lg:text-left"
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-5 leading-tight">
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-5 leading-tight">
                 {t('stats.sectionTitle')}
               </h2>
-              <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-4">
+              <p className="text-slate-700 dark:text-gray-300 text-base md:text-lg leading-relaxed mb-4">
                 {t('stats.sectionLead')}
               </p>
-              <p className="text-gray-400 leading-relaxed mb-6">
+              <p className="text-slate-600 dark:text-gray-400 leading-relaxed mb-6">
                 {t('stats.sectionBody')}
               </p>
-              <p className="text-sm font-medium text-cyan-400/90 border-l-2 border-cyan-500/50 pl-4 inline-block text-left">
+              <p className="text-sm font-medium text-green-700/90 dark:text-cyan-400/90 border-l-2 border-cyan-500/50 pl-4 inline-block text-left">
                 {t('stats.sectionHighlight')}
               </p>
             </motion.div>
@@ -429,8 +429,8 @@ export default function Home() {
       </section>
 
       {/* Certificates — W3Schools-style split */}
-      <section className="relative py-20 md:py-24 px-4 isolate bg-gray-800/25 border-y border-gray-800/60">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.04] via-transparent to-blue-600/[0.04] pointer-events-none" />
+      <section className="relative py-20 md:py-24 px-4 isolate bg-slate-100/70 dark:bg-gray-800/25 border-y border-slate-200 dark:border-gray-800/60">
+        <div className="absolute inset-0 bg-cyan-500/[0.04] pointer-events-none" />
         <div className="max-w-6xl mx-auto w-full relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div
@@ -440,13 +440,13 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="text-center lg:text-left"
             >
-              <p className="text-xs font-bold tracking-[0.2em] uppercase text-cyan-400 mb-4">
+              <p className="text-xs font-bold tracking-[0.2em] uppercase text-green-700 dark:text-cyan-400 mb-4">
                 {t('certificates.eyebrow')}
               </p>
-              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-white mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-slate-900 dark:text-white mb-6 leading-tight">
                 {t('certificates.title')}
               </h2>
-              <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+              <p className="text-slate-600 dark:text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
                 {t('certificates.description')}
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center lg:justify-start">
@@ -478,8 +478,8 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="flex justify-center lg:justify-end"
             >
-              <div className="w-full max-w-[22rem] rounded-2xl bg-gray-900/90 border border-gray-700/60 shadow-[0_24px_64px_-12px_rgba(0,0,0,0.55)] p-8 md:p-10 relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500/80 via-blue-500/60 to-cyan-500/80" />
+              <div className="w-full max-w-[22rem] rounded-2xl bg-white dark:bg-gray-900/90 border border-slate-200 dark:border-gray-700/60 shadow-[0_24px_64px_-12px_rgba(15,23,42,0.25)] dark:shadow-[0_24px_64px_-12px_rgba(0,0,0,0.55)] p-8 md:p-10 relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-cyan-500" />
                 <div className="flex justify-center mb-8 mt-2">
                   <div className="relative w-[7.5rem] h-[7.5rem]">
                     <svg
@@ -497,13 +497,13 @@ export default function Home() {
                         className="text-cyan-500/25"
                       />
                     </svg>
-                    <div className="absolute inset-2 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex flex-col items-center justify-center shadow-lg shadow-cyan-500/25 ring-2 ring-white/10">
+                    <div className="absolute inset-2 rounded-full bg-cyan-500 flex flex-col items-center justify-center shadow-lg shadow-cyan-500/25 ring-2 ring-white/10">
                       <Bot className="w-10 h-10 text-white mb-0.5" />
-                      <span className="text-[9px] font-bold tracking-wider text-white/90 uppercase">
+                      <span className="text-[9px] font-bold tracking-wider text-black/80 uppercase">
                         {t('certificates.eyebrow')}
                       </span>
                     </div>
-                    <span className="absolute -top-1 left-1/2 -translate-x-1/2 text-[8px] font-semibold text-cyan-400/90 uppercase tracking-widest">
+                    <span className="absolute -top-1 left-1/2 -translate-x-1/2 text-[8px] font-semibold text-green-700/90 dark:text-cyan-400/90 uppercase tracking-widest">
                       Robotics
                     </span>
                     <span className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[10px] font-medium text-gray-500">
@@ -511,14 +511,14 @@ export default function Home() {
                     </span>
                   </div>
                 </div>
-                <h3 className="text-center text-xl font-bold text-white mb-1 leading-snug">
+                <h3 className="text-center text-xl font-bold text-slate-900 dark:text-white mb-1 leading-snug">
                   {t('certificates.sampleTitle')}
                 </h3>
-                <p className="text-center text-gray-500 text-sm mb-8">
+                <p className="text-center text-slate-500 dark:text-gray-500 text-sm mb-8">
                   {t('certificates.sampleIssuer')}
                 </p>
-                <div className="border-t border-gray-700/70 pt-6 flex items-start gap-2 justify-center text-sm text-gray-400 text-center">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+                <div className="border-t border-slate-200 dark:border-gray-700/70 pt-6 flex items-start gap-2 justify-center text-sm text-slate-600 dark:text-gray-400 text-center">
+                  <CheckCircle2 className="w-5 h-5 text-green-700 dark:text-cyan-400 shrink-0 mt-0.5" />
                   <span>{t('certificates.verified')}</span>
                 </div>
               </div>
@@ -538,9 +538,9 @@ export default function Home() {
           >
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-2">
-                Featured <span className="text-cyan-400">Projects</span>
+                Featured <span className="text-green-700 dark:text-cyan-400">Projects</span>
               </h2>
-              <p className="text-gray-400">Build real-world projects step by step</p>
+              <p className="text-slate-600 dark:text-gray-400">Build real-world projects step by step</p>
             </div>
             <RoboButton variant="outline" onClick={() => window.location.href = '/projects'}>
               View All Projects
@@ -559,17 +559,17 @@ export default function Home() {
                 transition={{ delay: index * 0.1 }}
               >
                 <RoboCard className="h-full cursor-pointer" cornerCut="both" variant="circuit">
-                  <div className="aspect-video bg-gradient-to-br from-gray-700 to-gray-800 relative overflow-hidden flex items-center justify-center">
-                    <Cpu className="w-16 h-16 text-gray-600" />
+                  <div className="aspect-video bg-slate-200 dark:bg-gray-700 relative overflow-hidden flex items-center justify-center">
+                    <Cpu className="w-16 h-16 text-slate-400 dark:text-gray-600" />
                     <HexBadge className="absolute top-3 right-3">
                       {project.level === 'beginner' ? t('common.beginner') : t('common.intermediate')}
                     </HexBadge>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-lg font-semibold text-white mb-2 hover:text-cyan-400 transition-colors">
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-gray-400 text-sm">{project.description}</p>
+                    <p className="text-slate-600 dark:text-gray-400 text-sm">{project.description}</p>
                   </div>
                 </RoboCard>
               </motion.div>
@@ -579,7 +579,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="relative py-20 px-4 bg-gray-800/30 isolate">
+      <section className="relative py-20 px-4 bg-slate-100/60 dark:bg-gray-800/30 isolate">
         <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -588,7 +588,7 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              What <span className="text-cyan-400">Students</span> Say
+              What <span className="text-green-700 dark:text-cyan-400">Students</span> Say
             </h2>
           </motion.div>
 
@@ -609,14 +609,14 @@ export default function Home() {
                         <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
                       ))}
                     </div>
-                    <p className="text-gray-300 mb-6 italic">&quot;{testimonial.content}&quot;</p>
+                    <p className="text-slate-700 dark:text-gray-300 mb-6 italic">&quot;{testimonial.content}&quot;</p>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-semibold clip-corner-tl">
+                      <div className="w-10 h-10 bg-cyan-500 flex items-center justify-center text-white font-semibold clip-corner-tl">
                         {testimonial.name[0]}
                       </div>
                       <div>
-                        <div className="font-semibold text-white">{testimonial.name}</div>
-                        <div className="text-sm text-gray-400">{testimonial.role}</div>
+                        <div className="font-semibold text-slate-900 dark:text-white">{testimonial.name}</div>
+                        <div className="text-sm text-slate-500 dark:text-gray-400">{testimonial.role}</div>
                       </div>
                     </div>
                   </div>
@@ -637,13 +637,13 @@ export default function Home() {
               
               <div className="relative z-10">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Ready to Start Your <span className="text-cyan-400">Robotics Journey</span>?
+                  Ready to Start Your <span className="text-green-700 dark:text-cyan-400">Robotics Journey</span>?
                 </h2>
-                <p className="text-gray-400 text-lg mb-4 max-w-2xl mx-auto">
+                <p className="text-slate-600 dark:text-gray-400 text-lg mb-4 max-w-2xl mx-auto">
                   Join thousands of students learning Arduino, Raspberry Pi, and Robotics. It&apos;s free and fun!
                 </p>
-                <p className="text-sm text-cyan-500/70 mb-8">
-                  Powered by <span className="text-cyan-400 font-semibold">RoboverseBD</span>
+                <p className="text-sm text-green-700/70 dark:text-cyan-500/70 mb-8">
+                  Powered by <span className="text-green-700 dark:text-cyan-400 font-semibold">RoboverseBD</span>
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <RoboButton size="lg" variant="primary" onClick={() => window.location.href = '/signup'}>

@@ -32,7 +32,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center px-4 py-20">
       {/* Background effects */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-[80px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-500/20 rounded-full blur-[80px]" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -43,10 +43,10 @@ export default function LoginPage() {
           {/* Logo */}
           <div className="text-center mb-8">
             <Link href="/" className="inline-flex items-center gap-2 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
+              <div className="w-12 h-12 rounded-xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                 <Bot className="w-6 h-6 text-white" />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold text-green-700 dark:text-cyan-400">
                 Robotics Academy
               </span>
             </Link>
@@ -105,7 +105,7 @@ export default function LoginPage() {
                 />
                 <span className="text-sm text-slate-400">Remember me</span>
               </label>
-              <Link href="/forgot-password" className="text-sm text-cyan-400 hover:text-cyan-300">
+              <Link href="/forgot-password" className="text-sm text-green-700 dark:text-cyan-400 hover:text-green-600 dark:hover:text-cyan-300">
                 Forgot password?
               </Link>
             </div>
@@ -149,7 +149,7 @@ export default function LoginPage() {
           {/* Sign up link */}
           <p className="text-center text-slate-400 mt-6">
             Don't have an account?{' '}
-            <Link href="/signup" className="text-cyan-400 hover:text-cyan-300 font-medium">
+            <Link href="/signup" className="text-green-700 dark:text-cyan-400 hover:text-green-600 dark:hover:text-cyan-300 font-medium">
               Sign up free
             </Link>
           </p>

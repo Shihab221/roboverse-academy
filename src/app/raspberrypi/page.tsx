@@ -34,7 +34,7 @@ const modules = [
       { id: 'first-boot', title: 'First Boot and Configuration', duration: '12 min', completed: false },
     ],
     icon: <Bot className="w-6 h-6" />,
-    color: 'from-purple-500 to-pink-600 shadow-purple-500/25',
+    color: 'bg-cyan-500 shadow-cyan-500/25',
   },
   {
     id: 'linux',
@@ -49,7 +49,7 @@ const modules = [
       { id: 'package-management', title: 'Installing Software', duration: '10 min', completed: false },
     ],
     icon: <Terminal className="w-6 h-6" />,
-    color: 'from-slate-500 to-slate-700 shadow-slate-500/25',
+    color: 'bg-slate-500 shadow-slate-500/25',
   },
   {
     id: 'python',
@@ -64,7 +64,7 @@ const modules = [
       { id: 'lists-dicts', title: 'Lists and Dictionaries', duration: '12 min', completed: false },
     ],
     icon: <Code2 className="w-6 h-6" />,
-    color: 'from-blue-500 to-cyan-600 shadow-blue-500/25',
+    color: 'bg-blue-500 shadow-blue-500/25',
   },
   {
     id: 'gpio',
@@ -79,7 +79,7 @@ const modules = [
       { id: 'motor-control', title: 'Motor Control with Pi', duration: '18 min', completed: false },
     ],
     icon: <Cpu className="w-6 h-6" />,
-    color: 'from-green-500 to-emerald-600 shadow-green-500/25',
+    color: 'bg-green-500 shadow-green-500/25',
   },
   {
     id: 'camera',
@@ -93,7 +93,7 @@ const modules = [
       { id: 'face-detection', title: 'Face Detection', duration: '20 min', completed: false },
     ],
     icon: <Camera className="w-6 h-6" />,
-    color: 'from-red-500 to-orange-600 shadow-red-500/25',
+    color: 'bg-cyan-500 shadow-cyan-500/25',
   },
   {
     id: 'robotics',
@@ -108,7 +108,7 @@ const modules = [
       { id: 'line-following', title: 'Line Following Robot', duration: '20 min', completed: false },
     ],
     icon: <Cog className="w-6 h-6" />,
-    color: 'from-yellow-500 to-amber-600 shadow-yellow-500/25',
+    color: 'bg-cyan-500 shadow-cyan-500/25',
   },
   {
     id: 'ai',
@@ -122,7 +122,7 @@ const modules = [
       { id: 'voice-control', title: 'Voice Controlled Robot', duration: '25 min', completed: false },
     ],
     icon: <Brain className="w-6 h-6" />,
-    color: 'from-violet-500 to-purple-600 shadow-violet-500/25',
+    color: 'bg-cyan-500 shadow-cyan-500/25',
   },
 ]
 
@@ -140,8 +140,8 @@ export default function RaspberryPiTrackPage() {
     <div className="relative min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-pink-500/10 rounded-full blur-[80px]" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px]" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
@@ -151,33 +151,33 @@ export default function RaspberryPiTrackPage() {
           >
             <div>
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg shadow-purple-500/25">
+                <div className="w-16 h-16 rounded-2xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                   <Bot className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">Learning Path</Badge>
-                  <h1 className="text-3xl md:text-4xl font-bold text-white mt-1">
+                  <Badge className="bg-cyan-500/20 text-cyan-400 border-cyan-500/30">Learning Path</Badge>
+                  <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-1">
                     Raspberry Pi & Robotics
                   </h1>
                 </div>
               </div>
-              <p className="text-slate-400 text-lg max-w-2xl">
+              <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl">
                 Build intelligent robots and automation systems with Raspberry Pi. 
                 Learn Linux, Python programming, computer vision, and AI!
               </p>
               
               <div className="flex flex-wrap gap-4 mt-6">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-500/20 border border-purple-500/30">
-                  <Terminal className="w-5 h-5 text-purple-400" />
-                  <span className="text-purple-400">Learn Linux</span>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/20 border border-cyan-500/30">
+                  <Terminal className="w-5 h-5 text-cyan-400" />
+                  <span className="text-cyan-400">Learn Linux</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/20 border border-blue-500/30">
                   <Code2 className="w-5 h-5 text-blue-400" />
                   <span className="text-blue-400">Python Programming</span>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-violet-500/20 border border-violet-500/30">
-                  <Brain className="w-5 h-5 text-violet-400" />
-                  <span className="text-violet-400">AI & Robotics</span>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/20 border border-cyan-500/30">
+                  <Brain className="w-5 h-5 text-cyan-400" />
+                  <span className="text-cyan-400">AI & Robotics</span>
                 </div>
               </div>
             </div>
@@ -185,14 +185,14 @@ export default function RaspberryPiTrackPage() {
             <GlassCard className="p-6 min-w-[280px]">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-slate-400">Your Progress</span>
-                <span className="text-2xl font-bold text-purple-400">{progressPercent}%</span>
+                <span className="text-2xl font-bold text-cyan-400">{progressPercent}%</span>
               </div>
               <Progress value={progressPercent} className="mb-4" />
               <div className="flex items-center justify-between text-sm text-slate-400">
                 <span>{completedLessons} of {totalLessons} lessons</span>
                 <span>{modules.length} modules</span>
               </div>
-              <Button className="w-full mt-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700" asChild>
+              <Button className="w-full mt-4 bg-cyan-400 hover:bg-cyan-500" asChild>
                 <Link href="/raspberrypi/lessons/what-is-raspberry-pi">
                   <Play className="w-4 h-4 mr-2" />
                   Continue Learning
@@ -204,12 +204,12 @@ export default function RaspberryPiTrackPage() {
       </section>
 
       {/* Why Raspberry Pi Section */}
-      <section className="py-10 px-4 bg-slate-900/50">
+      <section className="py-10 px-4 bg-slate-900 dark:bg-slate-900/50">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-8">Why Learn Raspberry Pi?</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Card className="p-6 text-center">
-              <MonitorSmartphone className="w-10 h-10 text-purple-400 mx-auto mb-3" />
+              <MonitorSmartphone className="w-10 h-10 text-cyan-400 mx-auto mb-3" />
               <h3 className="font-semibold text-white mb-2">Full Computer</h3>
               <p className="text-slate-400 text-sm">A complete Linux computer in your hand</p>
             </Card>
@@ -224,7 +224,7 @@ export default function RaspberryPiTrackPage() {
               <p className="text-slate-400 text-sm">Add eyes to your robots with cameras</p>
             </Card>
             <Card className="p-6 text-center">
-              <Brain className="w-10 h-10 text-violet-400 mx-auto mb-3" />
+              <Brain className="w-10 h-10 text-cyan-400 mx-auto mb-3" />
               <h3 className="font-semibold text-white mb-2">AI Ready</h3>
               <p className="text-slate-400 text-sm">Run machine learning models</p>
             </Card>
@@ -251,7 +251,7 @@ export default function RaspberryPiTrackPage() {
                   <Card className="overflow-hidden">
                     <div className="p-6 border-b border-slate-700/50">
                       <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${module.color} flex items-center justify-center shadow-lg`}>
+                        <div className={`w-12 h-12 rounded-xl ${module.color} flex items-center justify-center shadow-lg`}>
                           {module.icon}
                         </div>
                         <div className="flex-1">
@@ -281,7 +281,7 @@ export default function RaspberryPiTrackPage() {
                             <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                               lesson.completed 
                                 ? 'bg-green-500/20 text-green-400' 
-                                : 'bg-slate-800 text-slate-400 group-hover:text-purple-400'
+                                : 'bg-slate-800 text-slate-400 group-hover:text-cyan-400'
                             }`}>
                               {lesson.completed ? (
                                 <CheckCircle2 className="w-5 h-5" />
@@ -290,13 +290,13 @@ export default function RaspberryPiTrackPage() {
                               )}
                             </div>
                             <div>
-                              <h4 className="text-white group-hover:text-purple-400 transition-colors">
+                              <h4 className="text-white group-hover:text-cyan-400 transition-colors">
                                 {lesson.title}
                               </h4>
                               <span className="text-sm text-slate-500">{lesson.duration}</span>
                             </div>
                           </div>
-                          <ChevronRight className="w-5 h-5 text-slate-500 group-hover:text-purple-400 group-hover:translate-x-1 transition-all" />
+                          <ChevronRight className="w-5 h-5 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
                         </Link>
                       ))}
                     </div>

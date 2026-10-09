@@ -9,16 +9,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30",
+          "bg-cyan-400 text-black shadow-md shadow-cyan-500/20 hover:bg-cyan-500 hover:shadow-lg hover:shadow-cyan-500/30",
         destructive:
           "bg-red-500 text-white shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/30",
         outline:
-          "border-2 border-cyan-500/50 bg-transparent text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400",
+          "border-2 border-cyan-500/50 bg-transparent text-green-700 dark:text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400",
         secondary:
           "bg-slate-800/80 text-slate-100 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/80 hover:border-slate-600",
         ghost: "text-slate-300 hover:bg-slate-800/50 hover:text-cyan-400",
-        link: "text-cyan-400 underline-offset-4 hover:underline hover:text-cyan-300",
-        glow: "bg-gradient-to-r from-purple-500 via-cyan-500 to-blue-500 text-white shadow-md shadow-purple-500/20 hover:shadow-lg hover:shadow-purple-500/30 animate-gradient-x",
+        link: "text-green-700 dark:text-cyan-400 underline-offset-4 hover:underline hover:text-green-600 dark:hover:text-cyan-300",
+        glow: "bg-cyan-400 text-black shadow-md shadow-cyan-500/20 hover:bg-cyan-500 hover:shadow-lg hover:shadow-cyan-500/30",
       },
       size: {
         default: "h-11 px-6 py-2",

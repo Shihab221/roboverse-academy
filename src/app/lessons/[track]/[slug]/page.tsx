@@ -45,7 +45,7 @@ function PlaceholderLesson({
         <p className="text-sm text-cyan-500/80 mb-2">
           {track ? (isBn ? track.titleBn : track.title) : trackId}
         </p>
-        <h1 className="text-2xl md:text-4xl font-bold text-white mb-4">{title}</h1>
+        <h1 className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">{title}</h1>
       </section>
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-12">

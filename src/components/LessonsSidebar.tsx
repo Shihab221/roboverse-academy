@@ -63,16 +63,16 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
   const sidebarInner = useMemo(
     () => (
       <div className="flex flex-col h-full">
-        <div className="p-4 border-b border-cyan-900/30 bg-gray-900/80">
+        <div className="p-4 border-b border-cyan-200 dark:border-cyan-900/30 bg-slate-100/80 dark:bg-gray-900/80">
           <Link
             href="/lessons"
             onClick={onMobileClose}
-            className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold"
+            className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 dark:hover:text-cyan-300 font-semibold"
           >
             <BookOpen className="w-5 h-5 shrink-0" />
             {t('nav.lessons')}
           </Link>
-          <p className="text-xs text-gray-500 mt-2 leading-relaxed">
+          <p className="text-xs text-slate-500 dark:text-gray-500 mt-2 leading-relaxed">
             {t('lessons.sidebarHint')}
           </p>
         </div>
@@ -83,7 +83,7 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
             const trackTitle = isBn ? track.titleBn : track.title
 
             return (
-              <div key={track.id} className="border-b border-gray-800/80">
+              <div key={track.id} className="border-b border-slate-200 dark:border-gray-800/80">
                 <button
                   type="button"
                   onClick={() =>
@@ -95,8 +95,8 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
                   className={cn(
                     'w-full flex items-center justify-between px-4 py-3 text-left text-sm font-semibold transition-colors',
                     activeTrack === track.id
-                      ? 'bg-cyan-500/10 text-cyan-300'
-                      : 'text-gray-200 hover:bg-gray-800/60'
+                      ? 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300'
+                      : 'text-slate-700 dark:text-gray-200 hover:bg-slate-200/60 dark:hover:bg-gray-800/60'
                   )}
                 >
                   <span>{trackTitle}</span>
@@ -124,7 +124,7 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
                                 [modKey]: !modOpen,
                               }))
                             }
-                            className="w-full flex items-center justify-between pl-6 pr-4 py-2 text-left text-xs font-medium text-gray-400 hover:text-gray-200 hover:bg-gray-800/40"
+                            className="w-full flex items-center justify-between pl-6 pr-4 py-2 text-left text-xs font-medium text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-gray-200 hover:bg-slate-200/50 dark:hover:bg-gray-800/40"
                           >
                             <span className="line-clamp-2">{modTitle}</span>
                             {modOpen ? (
@@ -154,8 +154,8 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
                                       className={cn(
                                         'block pl-8 pr-4 py-2 text-sm border-l-2 transition-colors',
                                         isActive
-                                          ? 'border-cyan-400 bg-cyan-500/15 text-cyan-100 font-medium'
-                                          : 'border-transparent text-gray-400 hover:text-white hover:bg-gray-800/50 hover:border-gray-600'
+                                          ? 'border-cyan-500 dark:border-cyan-400 bg-cyan-500/15 text-cyan-800 dark:text-cyan-100 font-medium'
+                                          : 'border-transparent text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-gray-800/50 hover:border-slate-300 dark:hover:border-gray-600'
                                       )}
                                     >
                                       {label}
@@ -190,7 +190,7 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex lg:flex-col lg:w-72 xl:w-80 shrink-0 h-full min-h-0 border-r border-cyan-900/30 bg-gray-900/95 backdrop-blur-sm overflow-hidden">
+      <aside className="hidden lg:flex lg:flex-col lg:w-72 xl:w-80 shrink-0 h-full min-h-0 border-r border-cyan-200 dark:border-cyan-900/30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm overflow-hidden">
         {sidebarInner}
       </aside>
 
@@ -203,15 +203,15 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
             aria-label="Close lesson menu"
             onClick={onMobileClose}
           />
-          <aside className="w-[min(20rem,88vw)] bg-gray-900 border-l border-cyan-900/30 flex flex-col max-h-full shadow-xl">
-            <div className="flex items-center justify-between p-3 border-b border-gray-800 lg:hidden">
-              <span className="text-sm font-medium text-gray-300">
+          <aside className="w-[min(20rem,88vw)] bg-white dark:bg-gray-900 border-l border-cyan-200 dark:border-cyan-900/30 flex flex-col max-h-full shadow-xl">
+            <div className="flex items-center justify-between p-3 border-b border-slate-200 dark:border-gray-800 lg:hidden">
+              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
                 {t('lessons.tutorialMenu')}
               </span>
               <button
                 type="button"
                 onClick={onMobileClose}
-                className="p-2 rounded-lg hover:bg-gray-800"
+                className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-gray-800"
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />

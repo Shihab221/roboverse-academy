@@ -24,20 +24,20 @@ export function RoboCard({ children, className, variant = "default", cornerCut =
     <div className={cn("relative group", className)}>
       <div
         className={cn(
-          "relative h-full bg-gray-800/80 backdrop-blur-sm transition-all duration-300",
-          variant === "glow" && "shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_25px_rgba(6,182,212,0.25)]",
+          "relative h-full bg-white/90 dark:bg-gray-800/80 backdrop-blur-sm transition-all duration-300 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.25)] dark:shadow-none",
+          variant === "glow" && "shadow-[0_0_15px_rgba(0,230,0,0.15)] hover:shadow-[0_0_25px_rgba(0,230,0,0.25)]",
         )}
         style={{ clipPath: clipPaths[cornerCut] }}
       >
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-cyan-500/5 to-blue-600/5 pointer-events-none" />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-cyan-500/5 pointer-events-none" />
         <div className="relative z-10 h-full">{children}</div>
       </div>
       <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
         <defs>
           <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgb(6,182,212)" stopOpacity="0.6" />
-            <stop offset="50%" stopColor="rgb(59,130,246)" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="rgb(6,182,212)" stopOpacity="0.6" />
+            <stop offset="0%" stopColor="rgb(0,230,0)" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="rgb(0,179,0)" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="rgb(0,230,0)" stopOpacity="0.6" />
           </linearGradient>
         </defs>
         {cornerCut === "both" && (
@@ -63,10 +63,10 @@ export function RoboCard({ children, className, variant = "default", cornerCut =
       </svg>
       {variant === "circuit" && (
         <>
-          <div className="absolute top-0 left-5 w-8 h-px bg-gradient-to-r from-cyan-500/60 to-transparent" />
-          <div className="absolute top-5 left-0 h-8 w-px bg-gradient-to-b from-cyan-500/60 to-transparent" />
-          <div className="absolute bottom-0 right-5 w-8 h-px bg-gradient-to-l from-cyan-500/60 to-transparent" />
-          <div className="absolute bottom-5 right-0 h-8 w-px bg-gradient-to-t from-cyan-500/60 to-transparent" />
+          <div className="absolute top-0 left-5 w-8 h-px bg-cyan-500/60" />
+          <div className="absolute top-5 left-0 h-8 w-px bg-cyan-500/60" />
+          <div className="absolute bottom-0 right-5 w-8 h-px bg-cyan-500/60" />
+          <div className="absolute bottom-5 right-0 h-8 w-px bg-cyan-500/60" />
           <div className="absolute top-0 left-5 w-1.5 h-1.5 bg-cyan-500 rounded-full opacity-60" />
           <div className="absolute bottom-0 right-5 w-1.5 h-1.5 bg-cyan-500 rounded-full opacity-60" />
         </>
@@ -115,12 +115,12 @@ export function RoboButton({
         className={cn(baseClasses, "group")}
         style={{ clipPath: "polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)" }}
       >
-        <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 transition-all group-hover:from-cyan-400 group-hover:to-blue-500" 
+        <span className="absolute inset-0 bg-cyan-400 transition-colors group-hover:bg-cyan-500"
           style={{ clipPath: "polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)" }} 
         />
-        <span className="relative z-10 flex items-center justify-center gap-2 text-white">{children}</span>
-        <div className="absolute top-0 left-3 w-4 h-px bg-white/30" />
-        <div className="absolute bottom-0 right-3 w-4 h-px bg-white/30" />
+        <span className="relative z-10 flex items-center justify-center gap-2 text-black">{children}</span>
+        <div className="absolute top-0 left-3 w-4 h-px bg-black/30" />
+        <div className="absolute bottom-0 right-3 w-4 h-px bg-black/30" />
       </button>
     );
   }
@@ -137,7 +137,7 @@ export function RoboButton({
         <span className="absolute inset-0 border border-cyan-500/50 group-hover:border-cyan-400 group-hover:bg-cyan-500/10 transition-all"
           style={{ clipPath: "polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)" }}
         />
-        <span className="relative z-10 flex items-center justify-center gap-2 text-cyan-400">{children}</span>
+        <span className="relative z-10 flex items-center justify-center gap-2 text-green-700 dark:text-cyan-400">{children}</span>
         <div className="absolute top-0 left-3 w-2 h-px bg-cyan-500/50 group-hover:w-4 transition-all" />
         <div className="absolute bottom-0 right-3 w-2 h-px bg-cyan-500/50 group-hover:w-4 transition-all" />
       </button>
@@ -149,7 +149,7 @@ export function RoboButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={cn(baseClasses, "text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10")}
+      className={cn(baseClasses, "text-slate-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-cyan-500/10")}
     >
       {children}
     </button>
@@ -187,7 +187,7 @@ export function HexBadge({ children, className }: { children: ReactNode; classNa
           className="text-cyan-500/60"
         />
       </svg>
-      <span className="relative z-10 px-4 py-1 text-sm font-medium text-cyan-400">{children}</span>
+      <span className="relative z-10 px-4 py-1 text-sm font-medium text-green-700 dark:text-cyan-400">{children}</span>
     </div>
   );
 }
