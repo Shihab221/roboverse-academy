@@ -62,7 +62,7 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
 
   const sidebarInner = useMemo(
     () => (
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full min-h-0">
         <div className="p-4 border-b border-cyan-200 dark:border-cyan-900/30 bg-slate-100/80 dark:bg-gray-900/80">
           <Link
             href="/lessons"
@@ -77,7 +77,7 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
           </p>
         </div>
 
-        <nav className="flex-1 overflow-y-auto py-2 robotics-scrollbar">
+        <nav className="flex-1 min-h-0 overflow-y-auto overscroll-contain py-2 robotics-scrollbar">
           {LESSON_TRACKS.map((track) => {
             const trackOpen = expandedTracks[track.id] ?? true
             const trackTitle = isBn ? track.titleBn : track.title
@@ -189,8 +189,8 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
 
   return (
     <>
-      {/* Desktop sidebar */}
-      <aside className="hidden lg:flex lg:flex-col lg:w-72 xl:w-80 shrink-0 h-full min-h-0 border-r border-cyan-200 dark:border-cyan-900/30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm overflow-hidden">
+      {/* Desktop sidebar — sticks under the navbar, scrolls independently */}
+      <aside className="hidden lg:flex lg:flex-col lg:w-72 xl:w-80 shrink-0 self-start sticky top-16 h-[calc(100dvh-4rem)] border-r border-cyan-200 dark:border-cyan-900/30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm overflow-hidden">
         {sidebarInner}
       </aside>
 
@@ -203,8 +203,8 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
             aria-label="Close lesson menu"
             onClick={onMobileClose}
           />
-          <aside className="w-[min(20rem,88vw)] bg-white dark:bg-gray-900 border-l border-cyan-200 dark:border-cyan-900/30 flex flex-col max-h-full shadow-xl">
-            <div className="flex items-center justify-between p-3 border-b border-slate-200 dark:border-gray-800 lg:hidden">
+          <aside className="w-[min(20rem,88vw)] h-full bg-white dark:bg-gray-900 border-l border-cyan-200 dark:border-cyan-900/30 flex flex-col shadow-xl">
+            <div className="flex items-center justify-between p-3 border-b border-slate-200 dark:border-gray-800 lg:hidden shrink-0">
               <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
                 {t('lessons.tutorialMenu')}
               </span>
@@ -217,7 +217,7 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="flex-1 min-h-0 overflow-hidden">{sidebarInner}</div>
+            <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain">{sidebarInner}</div>
           </aside>
         </div>
       )}

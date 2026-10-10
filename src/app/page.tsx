@@ -284,70 +284,88 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          {/* Desktop / tablet: center horizontal line + 4 dots */}
-          <div className="hidden md:block relative pt-4 pb-4">
-            <div
-              className="absolute left-[6%] right-[6%] top-1/2 h-[2px] -translate-y-1/2 pointer-events-none"
-              aria-hidden
-            >
-              <div className="h-full w-full bg-cyan-500/40" />
-              <CircuitLine variant="default" className="absolute inset-0 opacity-40" />
-            </div>
-
-            <div className="grid grid-cols-4 gap-2 lg:gap-4 relative">
-              {features.map((feature, index) => {
-                const contentAbove = index % 2 === 0
-                return (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: contentAbove ? -16 : 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-40px' }}
-                    transition={{ delay: index * 0.12 }}
-                    className="relative flex flex-col items-center min-h-[280px] lg:min-h-[300px]"
-                  >
-                    {contentAbove ? (
-                      <div className="flex-1 flex flex-col items-center justify-end pb-10 px-1 text-center">
-                        <div className="w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-green-700 dark:text-cyan-400 clip-corner-br">
-                          {feature.icon}
-                        </div>
-                        <h3 className="text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-2 leading-snug">
-                          {feature.title}
-                        </h3>
-                        <p className="text-slate-600 dark:text-gray-400 text-xs lg:text-sm leading-relaxed max-w-[14rem]">
-                          {feature.description}
-                        </p>
+          {/* Desktop / tablet: 3-row grid — cards, dots+line, cards.
+              Rows are shared across all columns, so every dot sits at the
+              exact same height and the line always passes through the dots
+              (never through text), regardless of description length. */}
+          <div className="hidden md:block relative">
+            <div className="grid grid-cols-4 gap-2 lg:gap-4">
+              {/* Row 1 — cards above the line (even indexes) */}
+              {features.map((feature, index) => (
+                <motion.div
+                  key={`above-${feature.title}`}
+                  initial={{ opacity: 0, y: -16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ delay: index * 0.12 }}
+                  className="flex flex-col items-center justify-end pb-8 px-1 text-center min-h-[190px] lg:min-h-[210px]"
+                >
+                  {index % 2 === 0 && (
+                    <>
+                      <div className="w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-green-700 dark:text-cyan-400 clip-corner-br">
+                        {feature.icon}
                       </div>
-                    ) : (
-                      <div className="flex-1" aria-hidden />
+                      <h3 className="text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-2 leading-snug">
+                        {feature.title}
+                      </h3>
+                      <p className="text-slate-600 dark:text-gray-400 text-xs lg:text-sm leading-relaxed max-w-[14rem]">
+                        {feature.description}
+                      </p>
+                    </>
+                  )}
+                </motion.div>
+              ))}
+
+              {/* Row 2 — dots with a line segment each; together they form one
+                  continuous line through all dot centers */}
+              {features.map((feature, index) => (
+                <motion.div
+                  key={`dot-${feature.title}`}
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ delay: index * 0.12 }}
+                  className="relative h-12 flex items-center justify-center"
+                  aria-hidden
+                >
+                  <span
+                    className={cn(
+                      'absolute top-1/2 -translate-y-1/2 h-[2px] bg-cyan-500/40',
+                      index === 0 && 'left-1/2 right-0',
+                      index === features.length - 1 && 'left-0 right-1/2',
+                      index !== 0 && index !== features.length - 1 && 'left-0 right-0'
                     )}
+                  />
+                  <span className="absolute w-8 h-8 rounded-full bg-cyan-400/20 animate-pulse" />
+                  <span className="relative w-4 h-4 rounded-full border-2 border-cyan-300 bg-white dark:bg-gray-900 shadow-[0_0_14px_rgba(68,214,45,0.75)]" />
+                </motion.div>
+              ))}
 
-                    <div
-                      className="relative z-10 flex items-center justify-center shrink-0"
-                      aria-hidden
-                    >
-                      <span className="absolute w-8 h-8 rounded-full bg-cyan-400/20 animate-pulse" />
-                      <span className="relative w-4 h-4 rounded-full border-2 border-cyan-300 bg-white dark:bg-gray-900 shadow-[0_0_14px_rgba(0,255,0,0.75)]" />
-                    </div>
-
-                    {!contentAbove ? (
-                      <div className="flex-1 flex flex-col items-center justify-start pt-10 px-1 text-center">
-                        <div className="w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-green-700 dark:text-cyan-400 clip-corner-br">
-                          {feature.icon}
-                        </div>
-                        <h3 className="text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-2 leading-snug">
-                          {feature.title}
-                        </h3>
-                        <p className="text-slate-600 dark:text-gray-400 text-xs lg:text-sm leading-relaxed max-w-[14rem]">
-                          {feature.description}
-                        </p>
+              {/* Row 3 — cards below the line (odd indexes) */}
+              {features.map((feature, index) => (
+                <motion.div
+                  key={`below-${feature.title}`}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ delay: index * 0.12 }}
+                  className="flex flex-col items-center justify-start pt-8 px-1 text-center min-h-[190px] lg:min-h-[210px]"
+                >
+                  {index % 2 === 1 && (
+                    <>
+                      <div className="w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-green-700 dark:text-cyan-400 clip-corner-br">
+                        {feature.icon}
                       </div>
-                    ) : (
-                      <div className="flex-1" aria-hidden />
-                    )}
-                  </motion.div>
-                )
-              })}
+                      <h3 className="text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-2 leading-snug">
+                        {feature.title}
+                      </h3>
+                      <p className="text-slate-600 dark:text-gray-400 text-xs lg:text-sm leading-relaxed max-w-[14rem]">
+                        {feature.description}
+                      </p>
+                    </>
+                  )}
+                </motion.div>
+              ))}
             </div>
           </div>
 
@@ -363,7 +381,7 @@ export default function Home() {
                 className="relative"
               >
                 <span
-                  className="absolute -left-[calc(2rem+5px)] top-1 w-3.5 h-3.5 rounded-full border-2 border-cyan-300 bg-white dark:bg-gray-900 shadow-[0_0_10px_rgba(0,255,0,0.6)]"
+                  className="absolute -left-[calc(2rem+8px)] top-1 w-3.5 h-3.5 rounded-full border-2 border-cyan-300 bg-white dark:bg-gray-900 shadow-[0_0_10px_rgba(68,214,45,0.6)]"
                   aria-hidden
                 />
                 <div className="w-11 h-11 bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3 text-green-700 dark:text-cyan-400 clip-corner-br">

@@ -5,33 +5,45 @@
    class-based dark mode explicitly. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Razer-style brand palette: neon green (#00ff00) on pure black.
-   Remapping the cyan and blue scales keeps every cyan and blue utility
-   (including opacity modifiers and dark variants) on-brand. */
+/* Brand palette: eye-comforting green (#44d62d) on pure black.
+   Remapping the cyan, blue and green scales keeps every cyan, blue and green
+   utility (including opacity modifiers and dark variants) on-brand. */
 @theme {
-  --color-cyan-50: #e9ffe9;
-  --color-cyan-100: #d0ffd0;
-  --color-cyan-200: #a5ffa5;
-  --color-cyan-300: #5cff5c;
-  --color-cyan-400: #00ff00;
-  --color-cyan-500: #00e600;
-  --color-cyan-600: #00b300;
-  --color-cyan-700: #008f00;
-  --color-cyan-800: #006600;
-  --color-cyan-900: #004000;
-  --color-cyan-950: #002400;
+  --color-cyan-50: #f2f9ee;
+  --color-cyan-100: #e1f1d8;
+  --color-cyan-200: #c5e4b6;
+  --color-cyan-300: #9dd188;
+  --color-cyan-400: #44d62d;
+  --color-cyan-500: #38b324;
+  --color-cyan-600: #2c901d;
+  --color-cyan-700: #257a1b;
+  --color-cyan-800: #20631b;
+  --color-cyan-900: #1c531a;
+  --color-cyan-950: #0c2f0d;
 
-  --color-blue-50: #e9ffe9;
-  --color-blue-100: #c8ffc8;
-  --color-blue-200: #96ff96;
-  --color-blue-300: #4dff4d;
-  --color-blue-400: #1aff1a;
-  --color-blue-500: #00cc00;
-  --color-blue-600: #009900;
-  --color-blue-700: #006f00;
-  --color-blue-800: #004d00;
-  --color-blue-900: #003300;
-  --color-blue-950: #001f00;
+  --color-blue-50: #f2f9ee;
+  --color-blue-100: #e1f1d8;
+  --color-blue-200: #c5e4b6;
+  --color-blue-300: #9dd188;
+  --color-blue-400: #44d62d;
+  --color-blue-500: #38b324;
+  --color-blue-600: #2c901d;
+  --color-blue-700: #257a1b;
+  --color-blue-800: #20631b;
+  --color-blue-900: #1c531a;
+  --color-blue-950: #0c2f0d;
+
+  --color-green-50: #f2f9ee;
+  --color-green-100: #e1f1d8;
+  --color-green-200: #c5e4b6;
+  --color-green-300: #9dd188;
+  --color-green-400: #44d62d;
+  --color-green-500: #38b324;
+  --color-green-600: #2c901d;
+  --color-green-700: #257a1b;
+  --color-green-800: #20631b;
+  --color-green-900: #1c531a;
+  --color-green-950: #0c2f0d;
 }
 
 :root {
@@ -84,11 +96,11 @@ html.lang-bn body {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 230, 0, 0.5) rgba(226, 232, 240, 0.8);
+  scrollbar-color: rgba(68, 214, 45, 0.5) rgba(226, 232, 240, 0.8);
 }
 
 .dark * {
-  scrollbar-color: rgba(0, 230, 0, 0.5) rgba(24, 24, 27, 0.8);
+  scrollbar-color: rgba(68, 214, 45, 0.5) rgba(24, 24, 27, 0.8);
 }
 
 /* Webkit (Chrome, Safari, Edge) — Track */
@@ -104,7 +116,7 @@ html.lang-bn body {
     rgba(226, 232, 240, 0.9) 50%,
     rgba(241, 245, 249, 0.95) 100%
   );
-  border-left: 1px solid rgba(0, 230, 0, 0.15);
+  border-left: 1px solid rgba(68, 214, 45, 0.15);
 }
 
 .dark ::-webkit-scrollbar-track {
@@ -120,36 +132,36 @@ html.lang-bn body {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
-    rgba(0, 230, 0, 0.3) 0%,
-    rgba(0, 230, 0, 0.5) 40%,
-    rgba(0, 179, 0, 0.5) 60%,
-    rgba(0, 230, 0, 0.3) 100%
+    rgba(68, 214, 45, 0.3) 0%,
+    rgba(68, 214, 45, 0.5) 40%,
+    rgba(56, 179, 36, 0.5) 60%,
+    rgba(68, 214, 45, 0.3) 100%
   );
-  border: 1px solid rgba(0, 230, 0, 0.3);
+  border: 1px solid rgba(68, 214, 45, 0.3);
   border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     180deg,
-    rgba(0, 230, 0, 0.5) 0%,
-    rgba(0, 230, 0, 0.7) 40%,
-    rgba(0, 255, 0, 0.7) 60%,
-    rgba(0, 230, 0, 0.5) 100%
+    rgba(68, 214, 45, 0.5) 0%,
+    rgba(68, 214, 45, 0.7) 40%,
+    rgba(68, 214, 45, 0.7) 60%,
+    rgba(68, 214, 45, 0.5) 100%
   );
-  border-color: rgba(0, 230, 0, 0.6);
-  box-shadow: -2px 0 8px rgba(0, 230, 0, 0.3),
-              inset 0 0 6px rgba(0, 230, 0, 0.15);
+  border-color: rgba(68, 214, 45, 0.6);
+  box-shadow: -2px 0 8px rgba(68, 214, 45, 0.3),
+              inset 0 0 6px rgba(68, 214, 45, 0.15);
 }
 
 ::-webkit-scrollbar-thumb:active {
   background: linear-gradient(
     180deg,
-    rgba(0, 255, 0, 0.6) 0%,
-    rgba(0, 230, 0, 0.85) 50%,
-    rgba(0, 255, 0, 0.6) 100%
+    rgba(68, 214, 45, 0.6) 0%,
+    rgba(68, 214, 45, 0.85) 50%,
+    rgba(68, 214, 45, 0.6) 100%
   );
-  border-color: rgba(0, 255, 0, 0.7);
+  border-color: rgba(68, 214, 45, 0.7);
 }
 
 ::-webkit-scrollbar-corner {
@@ -162,7 +174,7 @@ html.lang-bn body {
 
 /* Selection */
 ::selection {
-  background: rgba(0, 230, 0, 0.3);
+  background: rgba(68, 214, 45, 0.3);
   color: #0f172a;
 }
 
@@ -221,13 +233,13 @@ html.lang-bn body {
    ═══════════════════════════════════════════ */
 
 .tech-glow {
-  box-shadow: 0 0 20px rgba(0, 230, 0, 0.15),
-    inset 0 0 20px rgba(0, 230, 0, 0.05);
+  box-shadow: 0 0 20px rgba(68, 214, 45, 0.15),
+    inset 0 0 20px rgba(68, 214, 45, 0.05);
 }
 
 .tech-glow:hover {
-  box-shadow: 0 0 30px rgba(0, 230, 0, 0.25),
-    inset 0 0 30px rgba(0, 230, 0, 0.1);
+  box-shadow: 0 0 30px rgba(68, 214, 45, 0.25),
+    inset 0 0 30px rgba(68, 214, 45, 0.1);
 }
 
 /* ═══════════════════════════════════════════
@@ -306,7 +318,7 @@ section {
 
 /* Focus visible */
 *:focus-visible {
-  outline: 2px solid rgba(0, 230, 0, 0.5);
+  outline: 2px solid rgba(68, 214, 45, 0.5);
   outline-offset: 2px;
 }
 

@@ -25,7 +25,7 @@ export function RoboCard({ children, className, variant = "default", cornerCut =
       <div
         className={cn(
           "relative h-full bg-white/90 dark:bg-gray-800/80 backdrop-blur-sm transition-all duration-300 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.25)] dark:shadow-none",
-          variant === "glow" && "shadow-[0_0_15px_rgba(0,230,0,0.15)] hover:shadow-[0_0_25px_rgba(0,230,0,0.25)]",
+          variant === "glow" && "shadow-[0_0_15px_rgba(68,214,45,0.15)] hover:shadow-[0_0_25px_rgba(68,214,45,0.25)]",
         )}
         style={{ clipPath: clipPaths[cornerCut] }}
       >
@@ -35,9 +35,9 @@ export function RoboCard({ children, className, variant = "default", cornerCut =
       <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
         <defs>
           <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgb(0,230,0)" stopOpacity="0.6" />
-            <stop offset="50%" stopColor="rgb(0,179,0)" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="rgb(0,230,0)" stopOpacity="0.6" />
+            <stop offset="0%" stopColor="rgb(68,214,45)" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="rgb(56,179,36)" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="rgb(68,214,45)" stopOpacity="0.6" />
           </linearGradient>
         </defs>
         {cornerCut === "both" && (
@@ -242,5 +242,122 @@ export function TechFrame({ children, className }: { children: ReactNode; classN
       <CircuitCorner position="br" className="absolute -bottom-1 -right-1" />
       {children}
     </div>
+  );
+}
+
+// ─── Cutting-edge auth / form primitives ─────────────────────────────
+// Angular chamfered corners + neon border-glow + HUD ticks, matching
+// RoboButton / clip-corners language used across the site.
+
+const TECH_CLIP =
+  "polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)";
+
+interface TechInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  icon?: ReactNode;
+  rightSlot?: ReactNode;
+  error?: string;
+}
+
+export function TechInput({ label, icon, rightSlot, error, className, id, ...props }: TechInputProps) {
+  const inputId = id ?? (label ? `tech-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` : undefined);
+  return (
+    <div className={cn("group", className)}>
+      {label && (
+        <label
+          htmlFor={inputId}
+          className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400 transition-colors group-focus-within:text-cyan-600 dark:group-focus-within:text-cyan-400"
+        >
+          <span className="inline-block h-px w-4 bg-cyan-500/60 transition-all group-focus-within:w-6 group-focus-within:bg-cyan-400" />
+          {label}
+        </label>
+      )}
+      <div
+        className="relative p-px transition-all duration-300 bg-slate-300/80 dark:bg-white/10 group-focus-within:bg-cyan-400 group-focus-within:shadow-[0_0_20px_rgba(68,214,45,0.35)] group-hover:bg-cyan-600/50 dark:group-hover:bg-cyan-500/30"
+        style={{ clipPath: TECH_CLIP }}
+      >
+        <div
+          className="relative flex items-center gap-3 bg-slate-50 dark:bg-[#0a0f0a] px-4 transition-colors"
+          style={{ clipPath: TECH_CLIP }}
+        >
+          {/* scanline sweep on focus */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 transition-opacity duration-300 group-focus-within:opacity-100">
+            <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-cyan-500/10 to-transparent animate-scan" />
+          </div>
+          {icon && (
+            <span className="relative z-10 shrink-0 text-slate-400 transition-colors group-focus-within:text-cyan-600 dark:group-focus-within:text-cyan-400">
+              {icon}
+            </span>
+          )}
+          <input
+            id={inputId}
+            {...props}
+            className="relative z-10 h-12 w-full bg-transparent text-[15px] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none"
+          />
+          {rightSlot && <span className="relative z-10 shrink-0">{rightSlot}</span>}
+          {/* bottom circuit pulse line */}
+          <div className="absolute inset-x-8 bottom-1 h-px origin-left scale-x-0 bg-cyan-500/70 transition-transform duration-300 group-focus-within:scale-x-100" />
+        </div>
+        {/* HUD corner ticks */}
+        <div className="pointer-events-none absolute left-3 top-0 h-px w-6 bg-cyan-500/70" />
+        <div className="pointer-events-none absolute bottom-0 right-3 h-px w-6 bg-cyan-500/70" />
+      </div>
+      {error && <p className="mt-1.5 text-xs text-red-500">// {error}</p>}
+    </div>
+  );
+}
+
+interface TechButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "outline";
+  fullWidth?: boolean;
+}
+
+export function TechButton({
+  children,
+  className,
+  variant = "primary",
+  fullWidth = false,
+  ...props
+}: TechButtonProps) {
+  if (variant === "outline") {
+    return (
+      <button
+        {...props}
+        className={cn("group relative transition-all duration-300", fullWidth && "w-full", className)}
+        style={{ clipPath: TECH_CLIP }}
+      >
+        <span
+          className="absolute inset-0 border border-slate-300 dark:border-white/15 bg-white/60 dark:bg-white/5 backdrop-blur-sm transition-all duration-300 group-hover:border-cyan-500/60 group-hover:bg-cyan-500/10 group-hover:shadow-[0_0_20px_rgba(68,214,45,0.2)]"
+          style={{ clipPath: TECH_CLIP }}
+        />
+        <span className="relative z-10 flex h-12 items-center justify-center gap-2 px-6 text-[15px] font-semibold text-slate-700 dark:text-slate-100 transition-colors group-hover:text-cyan-700 dark:group-hover:text-cyan-300">
+          {children}
+        </span>
+        <span className="absolute left-3 top-0 h-px w-4 bg-current opacity-40 transition-all duration-300 group-hover:w-8" />
+        <span className="absolute bottom-0 right-3 h-px w-4 bg-current opacity-40 transition-all duration-300 group-hover:w-8" />
+      </button>
+    );
+  }
+
+  return (
+    <button
+      {...props}
+      className={cn("group relative transition-all duration-300 hover:shadow-[0_0_35px_rgba(68,214,45,0.45)] active:scale-[0.99]", fullWidth && "w-full", className)}
+      style={{ clipPath: TECH_CLIP }}
+    >
+      <span
+        className="absolute inset-0 bg-cyan-400 transition-colors duration-300 group-hover:bg-cyan-500"
+        style={{ clipPath: TECH_CLIP }}
+      />
+      {/* shine sweep */}
+      <span className="pointer-events-none absolute inset-0 overflow-hidden" style={{ clipPath: TECH_CLIP }}>
+        <span className="absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/40 blur-md transition-all duration-500 group-hover:left-[130%]" />
+      </span>
+      <span className="relative z-10 flex h-12 items-center justify-center gap-2 px-6 text-[15px] font-bold uppercase tracking-wider text-black">
+        {children}
+      </span>
+      <span className="absolute left-3 top-1 h-px w-5 bg-black/40" />
+      <span className="absolute bottom-1 right-3 h-px w-5 bg-black/40" />
+    </button>
   );
 }

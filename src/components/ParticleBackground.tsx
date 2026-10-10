@@ -44,7 +44,7 @@ export function ParticleBackground() {
     }
 
     const drawGrid = () => {
-      ctx.strokeStyle = 'rgba(0, 255, 0, 0.03)'
+      ctx.strokeStyle = 'rgba(68, 214, 45, 0.03)'
       ctx.lineWidth = 1
 
       const gridSize = 60
@@ -84,7 +84,7 @@ export function ParticleBackground() {
         // Draw particle
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(0, 255, 0, ${particle.opacity})`
+        ctx.fillStyle = `rgba(68, 214, 45, ${particle.opacity})`
         ctx.fill()
       })
 
@@ -99,7 +99,7 @@ export function ParticleBackground() {
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(other.x, other.y)
-            ctx.strokeStyle = `rgba(0, 255, 0, ${0.1 * (1 - distance / 120)})`
+            ctx.strokeStyle = `rgba(68, 214, 45, ${0.1 * (1 - distance / 120)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }

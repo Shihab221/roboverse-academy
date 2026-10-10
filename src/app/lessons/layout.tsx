@@ -11,12 +11,17 @@ export default function LessonsLayout({
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <div className="flex w-full flex-1 min-h-0 h-[calc(100vh-4rem)] max-h-[calc(100vh-4rem)] overflow-hidden">
+    // Single document scroll: the sidebar sticks independently while the
+    // lesson content scrolls with the window. (Previously this was a fixed
+    // h-[calc(100vh-4rem)] + overflow-hidden inner scroller, which created
+    // double scrollbars, broke scroll restoration, and broke
+    // framer-motion whileInView inside lesson pages.)
+    <div className="flex w-full flex-1 items-start">
       <LessonsSidebar
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
       />
-      <div className="flex-1 min-w-0 min-h-0 h-full overflow-y-auto overflow-x-hidden bg-gray-900/40 robotics-scrollbar">
+      <div className="flex-1 min-w-0">
         {children}
       </div>
       <LessonsMobileMenuButton onClick={() => setMobileOpen(true)} />
