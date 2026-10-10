@@ -1,0 +1,26 @@
+// Navigation order for the ESP32 track — matches the sidebar order in
+// lesson-tracks.ts (intro → wifi → bluetooth → iot → advanced).
+export const ESP32_LESSON_ORDER = [
+  'what-is-esp32',
+  'esp32-vs-arduino',
+  'esp32-board-overview',
+  'setup-esp32-arduino-ide',
+  'first-esp32-sketch',
+  'wifi-basics',
+  'connect-wifi',
+  'web-server',
+  'control-led-web',
+  'display-sensor-web',
+  'bluetooth-basics',
+  'classic-bluetooth',
+  'ble-intro',
+  'bluetooth-car',
+  'iot-intro',
+  'blynk-setup',
+  'thingspeak',
+  'firebase-esp32',
+  'smart-home',
+  'weather-station-iot',
+  'security-camera',
+  'home-automation',
+]

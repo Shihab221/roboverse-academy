@@ -11,6 +11,13 @@ export interface LessonMistake {
   solutionBn: string
 }
 
+// 2-4 short prose paragraphs describing what a lesson is about.
+// Stored in separate overview files and merged in at index time.
+export interface LessonOverview {
+  en: string[]
+  bn: string[]
+}
+
 export interface ArduinoLesson {
   title: string
   titleBn: string
@@ -28,6 +35,9 @@ export interface ArduinoLesson {
   commonMistakes: LessonMistake[]
   tryItTips: string[]
   tryItTipsBn: string[]
+  // Merged in from overview files at index time; falls back to [].
+  overview?: string[]
+  overviewBn?: string[]
 }
 
 export type ArduinoLessonsMap = Record<string, ArduinoLesson>

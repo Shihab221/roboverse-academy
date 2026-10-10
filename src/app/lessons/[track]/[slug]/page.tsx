@@ -2,9 +2,10 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Button } from '@/components/ui/button'
+import { TechButton } from '@/components/ui/robotics-ui'
 import { Card } from '@/components/ui/card'
 import { ArduinoLessonContent } from '@/components/ArduinoLessonContent'
 import {
@@ -30,6 +31,7 @@ function PlaceholderLesson({
   slug: string
 }) {
   const { language, t } = useLanguage()
+  const router = useRouter()
   const isBn = language === 'bn'
   const track = getTrackById(trackId)
   const found = findLessonInTrack(trackId, slug)
@@ -60,22 +62,21 @@ function PlaceholderLesson({
 
         <div className="flex items-center justify-between gap-4 pt-10 mt-10 border-t border-slate-800/50">
           {prev ? (
-            <Button variant="outline" asChild>
-              <Link href={lessonHref(trackId, prev.slug)}>
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                {t('lesson.previous')}
-              </Link>
-            </Button>
+            <TechButton
+              variant="outline"
+              onClick={() => router.push(lessonHref(trackId, prev.slug))}
+            >
+              <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              {t('lesson.previous')}
+            </TechButton>
           ) : (
             <div />
           )}
           {next ? (
-            <Button asChild>
-              <Link href={lessonHref(trackId, next.slug)}>
-                {t('lesson.next')}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
+            <TechButton onClick={() => router.push(lessonHref(trackId, next.slug))}>
+              {t('lesson.next')}
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </TechButton>
           ) : (
             <div />
           )}
@@ -119,8 +120,8 @@ export default function TrackLessonPage() {
     )
   }
 
-  if (track === 'arduino') {
-    return <ArduinoLessonContent slug={slug} />
+  if (track === 'arduino' || track === 'esp32') {
+    return <ArduinoLessonContent slug={slug} track={track} />
   }
 
   return <PlaceholderLesson trackId={track} slug={slug} />

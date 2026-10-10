@@ -113,8 +113,15 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.cookies': 'Cookie Settings',
     'footer.location': 'Bangladesh',
     'footer.changeLocation': 'Change Location >',
+
+    // Projects
+    'projects.sortBy': 'Sort by:',
+    'projects.sortLevel': 'Level',
+    'projects.sortPopular': 'Most popular',
+    'projects.sortRating': 'Top rated',
     
     // Lesson
+    'lesson.about': 'About This Lesson',
     'lesson.whatlearn': 'What You Will Learn',
     'lesson.components': 'Required Components',
     'lesson.circuit': 'Circuit Diagram',
@@ -245,8 +252,15 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.cookies': 'কুকি সেটিংস',
     'footer.location': 'বাংলাদেশ',
     'footer.changeLocation': 'অবস্থান পরিবর্তন >',
+
+    // Projects
+    'projects.sortBy': 'সাজান:',
+    'projects.sortLevel': 'লেভেল',
+    'projects.sortPopular': 'জনপ্রিয়',
+    'projects.sortRating': 'সেরা রেটিং',
     
     // Lesson
+    'lesson.about': 'এই পাঠ সম্পর্কে',
     'lesson.whatlearn': 'আপনি যা শিখবেন',
     'lesson.components': 'প্রয়োজনীয় উপাদান',
     'lesson.circuit': 'সার্কিট ডায়াগ্রাম',

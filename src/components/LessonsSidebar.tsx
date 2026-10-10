@@ -11,6 +11,7 @@ import {
   type LessonTrackId,
 } from '@/data/lesson-tracks'
 import { getArduinoLesson } from '@/data/arduino-lessons'
+import { getEsp32Lesson } from '@/data/esp32-lessons'
 import { cn } from '@/lib/utils'
 
 function parseLessonPath(pathname: string): {
@@ -79,6 +80,10 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
   const lessonLabel = (trackId: LessonTrackId, lessonId: string, fallback: string) => {
     if (trackId === 'arduino') {
       const full = getArduinoLesson(lessonId)
+      if (full) return isBn ? full.titleBn : full.title
+    }
+    if (trackId === 'esp32') {
+      const full = getEsp32Lesson(lessonId)
       if (full) return isBn ? full.titleBn : full.title
     }
     return fallback

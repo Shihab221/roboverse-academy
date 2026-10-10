@@ -1,158 +1,25 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { projects, getProjectsByLevel } from '@/data/projects'
+import type { ProjectLevel, ProjectMeta } from '@/data/project-types'
 import {
   Search,
   Filter,
   Cpu,
   Zap,
   Bot,
-  ChevronRight,
   Clock,
   Star,
   BookOpen,
+  ArrowDownWideNarrow,
 } from 'lucide-react'
-
-const projects = [
-  {
-    id: 'smart-dustbin',
-    title: 'Smart Dustbin',
-    description: 'Build a dustbin that opens automatically when you approach it using ultrasonic sensor.',
-    track: 'Arduino',
-    level: 'beginner',
-    duration: '25 min',
-    components: ['Arduino', 'Ultrasonic Sensor', 'Servo Motor'],
-    rating: 4.8,
-    students: 1250,
-  },
-  {
-    id: 'line-follower-robot',
-    title: 'Line Following Robot',
-    description: 'Create a robot that follows a black line on the ground automatically.',
-    track: 'Arduino',
-    level: 'intermediate',
-    duration: '35 min',
-    components: ['Arduino', 'IR Sensors', 'L298N', 'DC Motors'],
-    rating: 4.9,
-    students: 2100,
-  },
-  {
-    id: 'bluetooth-car',
-    title: 'Bluetooth Controlled Car',
-    description: 'Build a car you can control from your smartphone using Bluetooth.',
-    track: 'Arduino',
-    level: 'intermediate',
-    duration: '40 min',
-    components: ['Arduino', 'HC-05', 'L298N', 'DC Motors'],
-    rating: 4.7,
-    students: 1890,
-  },
-  {
-    id: 'weather-station',
-    title: 'Weather Station',
-    description: 'Monitor temperature, humidity and display on LCD. Save data to SD card.',
-    track: 'Arduino',
-    level: 'beginner',
-    duration: '30 min',
-    components: ['Arduino', 'DHT11', 'LCD I2C', 'SD Card Module'],
-    rating: 4.6,
-    students: 980,
-  },
-  {
-    id: 'smart-home-iot',
-    title: 'Smart Home System',
-    description: 'Control lights and appliances from anywhere using ESP32 and WiFi.',
-    track: 'ESP32',
-    level: 'intermediate',
-    duration: '45 min',
-    components: ['ESP32', 'Relay Module', 'LED', 'Blynk App'],
-    rating: 4.9,
-    students: 1560,
-  },
-  {
-    id: 'security-camera',
-    title: 'WiFi Security Camera',
-    description: 'Build a security camera that streams video to your phone.',
-    track: 'ESP32',
-    level: 'advanced',
-    duration: '50 min',
-    components: ['ESP32-CAM', 'OV2640 Camera'],
-    rating: 4.8,
-    students: 890,
-  },
-  {
-    id: 'obstacle-avoiding-robot',
-    title: 'Obstacle Avoiding Robot',
-    description: 'Create a robot that detects and avoids obstacles automatically.',
-    track: 'Arduino',
-    level: 'intermediate',
-    duration: '35 min',
-    components: ['Arduino', 'Ultrasonic Sensor', 'Servo', 'L298N'],
-    rating: 4.7,
-    students: 1670,
-  },
-  {
-    id: 'home-automation-pi',
-    title: 'Home Automation with Pi',
-    description: 'Control your home devices using Raspberry Pi and voice commands.',
-    track: 'Raspberry Pi',
-    level: 'advanced',
-    duration: '60 min',
-    components: ['Raspberry Pi', 'Relay Module', 'Google Assistant'],
-    rating: 4.9,
-    students: 750,
-  },
-  {
-    id: 'face-detection-pi',
-    title: 'Face Detection System',
-    description: 'Build a system that detects and recognizes faces using Pi Camera.',
-    track: 'Raspberry Pi',
-    level: 'advanced',
-    duration: '55 min',
-    components: ['Raspberry Pi', 'Pi Camera', 'OpenCV'],
-    rating: 4.8,
-    students: 620,
-  },
-  {
-    id: 'plant-watering',
-    title: 'Automatic Plant Watering',
-    description: 'Keep your plants happy with automatic watering based on soil moisture.',
-    track: 'Arduino',
-    level: 'beginner',
-    duration: '25 min',
-    components: ['Arduino', 'Soil Moisture Sensor', 'Water Pump', 'Relay'],
-    rating: 4.7,
-    students: 1340,
-  },
-  {
-    id: 'fire-alarm',
-    title: 'Fire Alarm System',
-    description: 'Create a fire detection and alarm system using flame and gas sensors.',
-    track: 'Arduino',
-    level: 'beginner',
-    duration: '20 min',
-    components: ['Arduino', 'Flame Sensor', 'MQ-2 Gas Sensor', 'Buzzer'],
-    rating: 4.5,
-    students: 1120,
-  },
-  {
-    id: 'robotic-arm',
-    title: 'Robotic Arm',
-    description: 'Build a robotic arm that can pick and place objects.',
-    track: 'Raspberry Pi',
-    level: 'advanced',
-    duration: '70 min',
-    components: ['Raspberry Pi', 'Servo Motors', '3D Printed Parts'],
-    rating: 4.9,
-    students: 450,
-  },
-]
 
 const trackIcons: Record<string, React.ReactNode> = {
   'Arduino': <Cpu className="w-5 h-5" />,
@@ -166,19 +33,125 @@ const trackColors: Record<string, string> = {
   'Raspberry Pi': 'bg-cyan-500',
 }
 
+type SortMode = 'level' | 'popular' | 'rating'
+
+const LEVEL_GROUPS: ProjectLevel[] = ['beginner', 'intermediate', 'advanced']
+
+function ProjectCard({ project, index }: { project: ProjectMeta; index: number }) {
+  const { t } = useLanguage()
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: Math.min(index, 5) * 0.05 }}
+    >
+      <Link href={`/projects/${project.id}`}>
+        <Card glow className="h-full overflow-hidden group cursor-pointer">
+          <div className="h-40 bg-slate-800 relative overflow-hidden">
+            <div className={`absolute inset-0 ${trackColors[project.track]} opacity-10`} />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className={`w-20 h-20 rounded-2xl ${trackColors[project.track]} flex items-center justify-center shadow-lg opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all`}>
+                {trackIcons[project.track]}
+              </div>
+            </div>
+            <Badge
+              variant={
+                project.level === 'beginner' ? 'beginner' :
+                project.level === 'intermediate' ? 'intermediate' : 'advanced'
+              }
+              className="absolute top-4 right-4"
+            >
+              {project.level === 'beginner' ? t('common.beginner') :
+               project.level === 'intermediate' ? t('common.intermediate') :
+               t('common.advanced')}
+            </Badge>
+            <Badge className="absolute top-4 left-4 bg-slate-900/80 border-slate-700">
+              {project.track}
+            </Badge>
+          </div>
+          <CardContent className="p-6">
+            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+              {project.description}
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.components.slice(0, 3).map((comp, i) => (
+                <span
+                  key={i}
+                  className="text-xs px-2 py-1 rounded bg-slate-800/80 text-slate-400"
+                >
+                  {comp}
+                </span>
+              ))}
+              {project.components.length > 3 && (
+                <span className="text-xs px-2 py-1 rounded bg-slate-800/80 text-slate-400">
+                  +{project.components.length - 3}
+                </span>
+              )}
+            </div>
+
+            <div className="flex items-center justify-between text-sm">
+              <div className="flex items-center gap-3 text-slate-400">
+                <span className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  {project.duration}
+                </span>
+                <span className="flex items-center gap-1">
+                  <BookOpen className="w-4 h-4" />
+                  {project.students}
+                </span>
+              </div>
+              <div className="flex items-center gap-1 text-yellow-400">
+                <Star className="w-4 h-4 fill-yellow-400" />
+                {project.rating}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </Link>
+    </motion.div>
+  )
+}
+
 export default function ProjectsPage() {
   const { t } = useLanguage()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedTrack, setSelectedTrack] = useState<string | null>(null)
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null)
+  const [sortMode, setSortMode] = useState<SortMode>('level')
 
-  const filteredProjects = projects.filter(project => {
-    const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          project.description.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesTrack = !selectedTrack || project.track === selectedTrack
-    const matchesLevel = !selectedLevel || project.level === selectedLevel
-    return matchesSearch && matchesTrack && matchesLevel
-  })
+  const levelLabel = (level: ProjectLevel) =>
+    level === 'beginner' ? t('common.beginner') :
+    level === 'intermediate' ? t('common.intermediate') :
+    t('common.advanced')
+
+  const visibleProjects = useMemo(() => {
+    const filtered = projects.filter(project => {
+      const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            project.description.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesTrack = !selectedTrack || project.track === selectedTrack
+      const matchesLevel = !selectedLevel || project.level === selectedLevel
+      return matchesSearch && matchesTrack && matchesLevel
+    })
+    const sorted = [...filtered]
+    if (sortMode === 'level') {
+      const base = getProjectsByLevel()
+      sorted.sort((a, b) => base.indexOf(a) - base.indexOf(b))
+    } else if (sortMode === 'popular') {
+      sorted.sort((a, b) => b.students - a.students)
+    } else {
+      sorted.sort((a, b) => b.rating - a.rating)
+    }
+    return sorted
+  }, [searchQuery, selectedTrack, selectedLevel, sortMode])
+
+  const isSearching = searchQuery.trim().length > 0
+  // Grouped by level when sorting by level and not searching
+  const showGroups = sortMode === 'level' && !isSearching && !selectedLevel
 
   return (
     <div className="relative min-h-screen">
@@ -186,7 +159,7 @@ export default function ProjectsPage() {
       <section className="relative py-16 px-4 overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px]" />
         <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px]" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -224,7 +197,7 @@ export default function ProjectsPage() {
                 <Filter className="w-4 h-4" />
                 <span>Filter:</span>
               </div>
-              
+
               {/* Track filters */}
               {['Arduino', 'ESP32', 'Raspberry Pi'].map((track) => (
                 <Button
@@ -238,20 +211,42 @@ export default function ProjectsPage() {
                   {track}
                 </Button>
               ))}
-              
+
               <div className="w-px h-8 bg-slate-700 mx-2" />
-              
+
               {/* Level filters */}
-              {['beginner', 'intermediate', 'advanced'].map((level) => (
+              {(['beginner', 'intermediate', 'advanced'] as ProjectLevel[]).map((level) => (
                 <Button
                   key={level}
                   variant={selectedLevel === level ? 'default' : 'secondary'}
                   size="sm"
                   onClick={() => setSelectedLevel(selectedLevel === level ? null : level)}
                 >
-                  {level === 'beginner' ? t('common.beginner') : 
-                   level === 'intermediate' ? t('common.intermediate') : 
-                   t('common.advanced')}
+                  {levelLabel(level)}
+                </Button>
+              ))}
+            </div>
+
+            {/* Sort */}
+            <div className="flex flex-wrap gap-3 justify-center items-center mt-4">
+              <div className="flex items-center gap-2 text-slate-400">
+                <ArrowDownWideNarrow className="w-4 h-4" />
+                <span>{t('projects.sortBy')}</span>
+              </div>
+              {(
+                [
+                  { id: 'level', label: t('projects.sortLevel') },
+                  { id: 'popular', label: t('projects.sortPopular') },
+                  { id: 'rating', label: t('projects.sortRating') },
+                ] as { id: SortMode; label: string }[]
+              ).map((opt) => (
+                <Button
+                  key={opt.id}
+                  variant={sortMode === opt.id ? 'default' : 'secondary'}
+                  size="sm"
+                  onClick={() => setSortMode(opt.id)}
+                >
+                  {opt.label}
                 </Button>
               ))}
             </div>
@@ -264,91 +259,44 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <p className="text-slate-400">
-              Showing {filteredProjects.length} of {projects.length} projects
+              Showing {visibleProjects.length} of {projects.length} projects
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <Link href={`/projects/${project.id}`}>
-                  <Card glow className="h-full overflow-hidden group cursor-pointer">
-                    <div className="h-40 bg-slate-800 relative overflow-hidden">
-                      <div className={`absolute inset-0 ${trackColors[project.track]} opacity-10`} />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className={`w-20 h-20 rounded-2xl ${trackColors[project.track]} flex items-center justify-center shadow-lg opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all`}>
-                          {trackIcons[project.track]}
-                        </div>
-                      </div>
-                      <Badge
-                        variant={
-                          project.level === 'beginner' ? 'beginner' :
-                          project.level === 'intermediate' ? 'intermediate' : 'advanced'
-                        }
-                        className="absolute top-4 right-4"
-                      >
-                        {project.level === 'beginner' ? t('common.beginner') :
-                         project.level === 'intermediate' ? t('common.intermediate') :
-                         t('common.advanced')}
-                      </Badge>
-                      <Badge className="absolute top-4 left-4 bg-slate-900/80 border-slate-700">
-                        {project.track}
-                      </Badge>
+          {showGroups ? (
+            <div className="space-y-12">
+              {LEVEL_GROUPS.map((level) => {
+                const group = visibleProjects.filter((p) => p.level === level)
+                if (group.length === 0) return null
+                return (
+                  <div key={level}>
+                    <div className="flex items-center gap-3 mb-5">
+                      <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                        {levelLabel(level)}
+                      </h2>
+                      <span className="text-xs font-mono px-2 py-1 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300">
+                        {group.length}
+                      </span>
+                      <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700/50" />
                     </div>
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-slate-400 text-sm mb-4 line-clamp-2">
-                        {project.description}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.components.slice(0, 3).map((comp, i) => (
-                          <span
-                            key={i}
-                            className="text-xs px-2 py-1 rounded bg-slate-800/80 text-slate-400"
-                          >
-                            {comp}
-                          </span>
-                        ))}
-                        {project.components.length > 3 && (
-                          <span className="text-xs px-2 py-1 rounded bg-slate-800/80 text-slate-400">
-                            +{project.components.length - 3}
-                          </span>
-                        )}
-                      </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {group.map((project, index) => (
+                        <ProjectCard key={project.id} project={project} index={index} />
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {visibleProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </div>
+          )}
 
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="flex items-center gap-3 text-slate-400">
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
-                            {project.duration}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <BookOpen className="w-4 h-4" />
-                            {project.students}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1 text-yellow-400">
-                          <Star className="w-4 h-4 fill-yellow-400" />
-                          {project.rating}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {filteredProjects.length === 0 && (
+          {visibleProjects.length === 0 && (
             <div className="text-center py-20">
               <p className="text-slate-600 dark:text-slate-400 text-lg">No projects found matching your criteria.</p>
               <Button

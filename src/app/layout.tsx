@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Hind_Siliguri } from "next/font/google";
+import { Poppins, Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -7,8 +7,9 @@ import { Navbar } from "@/components/Navbar";
 import { ConditionalFooter } from "@/components/ConditionalFooter";
 import { RoboticsBg } from "@/components/RoboticsBg";
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
 });
 
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${hindSiliguri.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${poppins.variable} ${hindSiliguri.variable} font-sans antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"

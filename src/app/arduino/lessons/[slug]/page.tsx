@@ -2,10 +2,11 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Button } from '@/components/ui/button'
+import { TechButton } from '@/components/ui/robotics-ui'
 import { Card, GlassCard } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CodeEditor } from '@/components/CodeEditor'
@@ -16,6 +17,7 @@ import {
   BookOpen,
   CheckCircle2,
   AlertTriangle,
+  FileText,
   Lightbulb,
   Package,
   CircuitBoard,
@@ -26,6 +28,7 @@ import {
 export default function LessonPage() {
   const params = useParams()
   const slug = params.slug as string
+  const router = useRouter()
   const { language, t } = useLanguage()
 
   const lesson = getArduinoLesson(slug)
@@ -47,6 +50,9 @@ export default function LessonPage() {
 
   const learnItems = isEn ? lesson.whatYouWillLearn : lesson.whatYouWillLearnBn
   const tryItItems = isEn ? lesson.tryItTips : lesson.tryItTipsBn
+  const aboutParagraphs = isEn
+    ? lesson.overview.length > 0 ? lesson.overview : [lesson.description]
+    : lesson.overviewBn.length > 0 ? lesson.overviewBn : [lesson.descriptionBn]
 
   return (
     <div className="relative min-h-screen pb-20">
@@ -98,6 +104,28 @@ export default function LessonPage() {
       </section>
 
       <div className="max-w-5xl mx-auto px-4 py-10">
+        {/* About This Lesson */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <h2 className="flex items-center gap-3 text-xl font-semibold text-slate-900 dark:text-white mb-4">
+            <FileText className="w-5 h-5 text-green-700 dark:text-cyan-400" />
+            {t('lesson.about')}
+          </h2>
+          <Card className="p-6">
+            <div className="space-y-4">
+              {aboutParagraphs.map((para, i) => (
+                <p key={i} className="text-slate-300 leading-relaxed">
+                  {para}
+                </p>
+              ))}
+            </div>
+          </Card>
+        </motion.section>
+
         {/* What You Will Learn */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
@@ -263,27 +291,28 @@ export default function LessonPage() {
           className="flex items-center justify-between gap-4 pt-8 border-t border-slate-800/50"
         >
           {lesson.prevLesson ? (
-            <Button variant="outline" asChild>
-              <Link href={`/arduino/lessons/${lesson.prevLesson}`}>
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                {t('lesson.previous')}
-              </Link>
-            </Button>
+            <TechButton
+              variant="outline"
+              onClick={() => lesson.prevLesson && router.push(`/arduino/lessons/${lesson.prevLesson}`)}
+            >
+              <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              {t('lesson.previous')}
+            </TechButton>
           ) : (
             <div />
           )}
 
           {lesson.nextLesson ? (
-            <Button asChild>
-              <Link href={`/arduino/lessons/${lesson.nextLesson}`}>
-                {t('lesson.next')}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
+            <TechButton
+              onClick={() => lesson.nextLesson && router.push(`/arduino/lessons/${lesson.nextLesson}`)}
+            >
+              {t('lesson.next')}
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </TechButton>
           ) : (
-            <Button variant="outline" asChild>
-              <Link href="/arduino">Finish Track</Link>
-            </Button>
+            <TechButton variant="outline" onClick={() => router.push('/arduino')}>
+              Finish Track
+            </TechButton>
           )}
         </motion.section>
       </div>

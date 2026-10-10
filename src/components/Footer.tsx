@@ -124,7 +124,7 @@ export function Footer() {
                 <h3 className="text-[15px] font-normal text-[#eeeeee] mb-4">
                   {col.heading}
                 </h3>
-                <ul className="space-y-2.5">
+              <ul className="space-y-2.5">
                   {col.links.map((link) => (
                     <li key={`${link.href}-${link.label}`}>
                       <Link
@@ -144,7 +144,7 @@ export function Footer() {
               <h3 className="text-[15px] font-normal text-[#eeeeee] mb-4">
                 {t('footer.follow')}
               </h3>
-              <ul className="space-y-2.5">
+              <ul className="grid grid-cols-3 gap-2.5 w-fit">
                 {socials.map(({ href, label, Icon }) => (
                   <li key={label}>
                     <a
