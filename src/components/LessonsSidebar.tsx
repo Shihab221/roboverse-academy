@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, ChevronRight, Menu, X, BookOpen } from 'lucide-react'
@@ -28,14 +28,20 @@ const DEFAULT_EXPANDED_TRACKS: Record<LessonTrackId, boolean> = {
   raspberrypi: true,
 }
 
-function getDefaultExpandedModules(): Record<string, boolean> {
-  const result: Record<string, boolean> = {}
+// Sidebar starts collapsed: only tracks + their module rows are visible.
+// Lessons appear when a module is expanded. Returns the module holding the
+// given lesson so it can be auto-expanded when viewing a lesson directly.
+function findModuleKey(trackId: LessonTrackId | null, slug: string | null): string | null {
+  if (!trackId || !slug) return null
   for (const track of LESSON_TRACKS) {
+    if (track.id !== trackId) continue
     for (const mod of track.modules) {
-      result[`${track.id}-${mod.id}`] = true
+      if (mod.lessons.some((lesson) => lesson.id === slug)) {
+        return `${track.id}-${mod.id}`
+      }
     }
   }
-  return result
+  return null
 }
 
 interface LessonsSidebarProps {
@@ -50,7 +56,25 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
   const { track: activeTrack, slug: activeSlug } = parseLessonPath(pathname)
 
   const [expandedTracks, setExpandedTracks] = useState(DEFAULT_EXPANDED_TRACKS)
-  const [expandedModules, setExpandedModules] = useState(getDefaultExpandedModules)
+  // All modules start collapsed; only the module holding the lesson being
+  // viewed (if any) starts expanded.
+  const [expandedModules, setExpandedModules] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {}
+    const key = findModuleKey(activeTrack, activeSlug)
+    if (key) initial[key] = true
+    return initial
+  })
+
+  // When navigating between lessons, auto-expand the module + track holding
+  // the newly viewed lesson so the active link is always visible.
+  useEffect(() => {
+    if (!activeTrack || !activeSlug) return
+    const key = findModuleKey(activeTrack, activeSlug)
+    if (!key) return
+    setExpandedModules((prev) => (prev[key] ? prev : { ...prev, [key]: true }))
+    setExpandedTracks((prev) => (prev[activeTrack] ? prev : { ...prev, [activeTrack]: true }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTrack, activeSlug])
 
   const lessonLabel = (trackId: LessonTrackId, lessonId: string, fallback: string) => {
     if (trackId === 'arduino') {
@@ -111,7 +135,7 @@ export function LessonsSidebar({ mobileOpen, onMobileClose }: LessonsSidebarProp
                   <div className="pb-2">
                     {track.modules.map((mod) => {
                       const modKey = `${track.id}-${mod.id}`
-                      const modOpen = expandedModules[modKey] ?? true
+                      const modOpen = expandedModules[modKey] ?? false
                       const modTitle = isBn ? mod.titleBn : mod.title
 
                       return (

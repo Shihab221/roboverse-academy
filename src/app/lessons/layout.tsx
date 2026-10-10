@@ -16,7 +16,12 @@ export default function LessonsLayout({
     // h-[calc(100vh-4rem)] + overflow-hidden inner scroller, which created
     // double scrollbars, broke scroll restoration, and broke
     // framer-motion whileInView inside lesson pages.)
-    <div className="flex w-full flex-1 items-start">
+    //
+    // -mt-16 cancels the root <main>'s pt-16 (meant for regular pages) so the
+    // sidebar/content attach flush under the sticky navbar — otherwise a
+    // 64px void sits between the navbar and the lessons shell, and the page
+    // can be scrolled up into that empty gap.
+    <div className="flex w-full flex-1 items-start -mt-16">
       <LessonsSidebar
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
